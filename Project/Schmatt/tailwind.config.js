@@ -17,7 +17,8 @@ module.exports = {
         "state-blue": "#6564DB",
         "text-color": "#BFBDBD",
         "border-color": "#707070",
-        "button-active": "#28428D",
+        "button-active": "#212023",
+        "common": "#171717",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -8,9 +8,9 @@ const RoomButton = () => {
         setButton(button =>!button)
     }
 
-    const buttonClass = button ? 'bg-button-active text-white scale-x-100 duration-75' : 'w-[90%]  scale-x-102 duration-75 w-full mt-5 p-5 rounded-sm';
+    const buttonClass = button ? 'bg-common text-white scale-x-100 duration-75' : ' scale-x-[109%] translate-x-4 duration-75 p-5 rounded-sm';
   return (
-    <button onClick={changeButton} className={`mt-5 w-[90%] p-5 rounded-sm ${buttonClass}`}>
+    <button onClick={changeButton} className={` mt-5 relative border-[1px] border-border-color w-[90%] p-5 bg-button-active rounded-sm ${buttonClass}`}>
         <p>Placeholder</p>
     </button>
   )
