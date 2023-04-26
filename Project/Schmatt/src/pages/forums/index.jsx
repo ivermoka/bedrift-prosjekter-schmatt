@@ -1,4 +1,4 @@
-import Navbar from "../chat/components/Navbar";
+import Navbar from "./../layout"
 
 export default function f() {
 
