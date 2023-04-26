@@ -1,8 +1,7 @@
 import React from "react";
-import Navbar from "./components/Navbar";
 import Chat from "./components/Chat"; 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./firebase";
+import { auth } from ".../firebase";
 
 const style = {
   appContainer: `w-screen h-screen bg-black mx-auto text-center  overflow-hidden`,
