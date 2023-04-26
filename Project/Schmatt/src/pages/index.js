@@ -6,6 +6,7 @@ export default function Home() {
       <a href="/login">
         <button>click</button>
       </a>
+      
     </main>
   );
 }
