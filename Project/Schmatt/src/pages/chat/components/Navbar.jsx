@@ -1,6 +1,4 @@
 import React from "react";
-import SignIn from "./SignIn"
-import LogOut from "./LogOut"
 import { auth } from "../../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 

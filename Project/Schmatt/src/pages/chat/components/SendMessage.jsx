@@ -28,10 +28,10 @@ const SendMessage = () => {
     }
 
     return (
-    <form onSubmit={sendMessage} className={style.form}>
-        <input value={input} onChange={(e) => setInput(e.target.value)} className={style.input} type="text" placeholder='your message' />
-        <button className={style.button} type="submit">Send</button>    
-    </form>
+        <form onSubmit={sendMessage} className={style.form}>
+            <input value={input} onChange={(e) => setInput(e.target.value)} className={style.input} type="text" placeholder='your message' />
+            <button className={style.button} type="submit">Send</button>    
+        </form>
     )
 }
 
