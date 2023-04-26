@@ -1,4 +1,4 @@
-import Navbar from "/Users/maxpetzold/Documents/GitHub/bedrift-prosjekter-schmatt/Project/Schmatt/src/pages/layout.jsx";
+import Navbar from "./../layout"
 
 export default function f() {
 
