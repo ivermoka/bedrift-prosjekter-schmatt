@@ -1,5 +1,5 @@
 import React from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
 import Button from "./../login/components/submit-button";
@@ -19,7 +19,10 @@ export default function SignupForm() {
   const onSubmit = async (data) => {
     try {
       await createUserWithEmailAndPassword(auth, data.email, data.password);
-      console.log("Accound created successfully");
+      await updateProfile(auth.currentUser, {
+        displayName: data.username,
+      });
+      console.log("Account created successfully", displayName);
     } catch (error) {
       console.log("Failed creating account: ", error);
     }
