@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
@@ -13,13 +13,24 @@ export default function SignupForm() {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+
   const onSubmit = async (data) => {
+    if (data.password !== data.confirmPassword) {
+      setPasswordsMatch(false);
+      return;
+    }
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-      await updateProfile(auth.currentUser, {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      await updateProfile(user, {
         displayName: data.username,
       });
       console.log("Account created successfully", displayName);
@@ -119,9 +130,11 @@ export default function SignupForm() {
           <i className="m-0 p-0 text-sm text-red-700">
             {errors.password?.message}
           </i>
-          <i className="m-0 p-0 text-sm text-red-700">
-            {errors.confirmPassword?.message}
-          </i>
+          {passwordsMatch && (
+            <i className="m-0 p-0 text-sm text-red-700">
+              *Passwords do not match
+            </i>
+          )}
           {/* Login button */}
           <Button text="Log In" />
         </form>
