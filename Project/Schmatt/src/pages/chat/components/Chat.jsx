@@ -1,5 +1,8 @@
+import SendMessage from './SendMessage';
+import Message from './Message';
+
 import { useState, useEffect } from 'react'
-import { db } from '../../firebase-config';
+import { db } from '../../../firebase-config';
 import {query, collection, orderBy, onSnapshot} from "firebase/firestore" ; 
 
 
@@ -24,9 +27,10 @@ const Chat = () => {
   return (
     <>
         <div className=' w-[65%] border-r-[1px] border-border-color h-full'>
-          {messages.map((message) => (
+            {/* disable until login/signup system is functionable */}
+          {/* {messages.map((message) => (
               <Message key={message.id} message={message} />
-            ))}
+            ))} */}
           <SendMessage />
           
         </div>
