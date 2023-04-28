@@ -26,11 +26,11 @@ const Chat = () => {
   }, []);
   return (
     <>
-        <div className=' w-[65%] border-r-[1px] border-border-color h-full'>
+        <div className=' w-[65%] border-r-[1px] border-border-color h-full flex flex-col'>
             {/* disable until login/signup system is functionable */}
-          {/* {messages.map((message) => (
+          {messages.map((message) => (
               <Message key={message.id} message={message} />
-            ))} */}
+            ))}
           <SendMessage />
           
         </div>

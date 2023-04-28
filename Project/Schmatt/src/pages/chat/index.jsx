@@ -1,5 +1,6 @@
 import React from 'react'
 import Rooms from './components/Rooms'
+import User from './components/User'
 import SendMessage from './components/sendMessage'
 import Message from './components/Message'
 import Chat from './components/Chat'
@@ -31,10 +32,8 @@ const index = () => {
       <div className=' w-screen h-screen bg-rich-black flex flex-row'>
         
         <Rooms />
-        
-        
         <Chat />
-          
+        <User />
         
         
       </div>
