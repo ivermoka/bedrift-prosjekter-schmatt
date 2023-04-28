@@ -1,10 +1,9 @@
 export default function Home() {
   return (
     <main>
-      <a href="/login">
+      <a href="/signup">
         <button>click</button>
       </a>
-      
     </main>
   );
 }
