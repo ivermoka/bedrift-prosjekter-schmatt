@@ -20,7 +20,7 @@ const SearchBar = () => {
                 <input
                     type="text"
                     className="block p-2 pl-10 w-70 text-[#707070] bg-[#283239] rounded-lg border-gray-300 focus:pl-3"
-                    placeholder="Search Here..."
+                    placeholder="Search..."
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                 />
