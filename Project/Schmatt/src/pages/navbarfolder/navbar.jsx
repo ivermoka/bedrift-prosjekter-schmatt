@@ -1,14 +1,16 @@
 import React from 'react'
 import Searchbar from "./components/searchbar"
+import Profile from "./components/profile"
 export default function Navbar() {
     return (
         <>
-            <nav className=' flex flex-row w-screen h-20'>
-                <div id='left' className=' flex w-3/5 bg-gray-900 '>
-                    <div className='w-[100px]'>  <img className=' h-full w-full ml-20 ' src={"ailogofortesting.webp"} /></div>
+            <nav className=' flex flex-row w-screen h-14  bg-rich-black'>
+                <div id='left' className=' flex w-3/5 '>
+                    <div className='w-[100px]'>  <a href="/"><img className=' mt-2 h-auto w-2/3 ml-20 ' src={"temp-logo-schmatt.png"} /></a> </div>
                 </div>
-                <div id='right' className='w-2/5 bg-gray-900 flex flex-row justify-start gap-12 items-center'>
+                <div id='right' className='w-2/5 flex flex-row justify-start   gap-28 items-center'>
                     <Searchbar />
+                    <Profile />
                 </div>
             </nav>
 

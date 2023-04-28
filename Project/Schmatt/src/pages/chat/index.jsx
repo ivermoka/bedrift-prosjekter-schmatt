@@ -7,6 +7,7 @@ import Chat from './components/Chat'
 import { useState, useEffect } from 'react'
 import { db } from '../../firebase-config';
 import {query, collection, orderBy, onSnapshot} from "firebase/firestore" ; 
+import Navbar from '../navbarfolder/navbar'
 
 
 
@@ -29,14 +30,18 @@ const index = () => {
   }, []);
   return (
     <>
-      <div className=' w-screen h-screen bg-rich-black flex flex-row'>
-        
-        <Rooms />
-        <Chat />
-        <User />
-        
-        
+      <div className='overflow-hidden max-h-screen'>
+        <Navbar />
+        <div className=' w-screen h-screen bg-rich-black flex flex-row'>
+          
+          <Rooms />
+          <Chat />
+          <User />
+          
+          
+        </div>
       </div>
+      
       
         
     </>
