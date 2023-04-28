@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react"
-import { auth, db } from "firebase/auth"
+import { auth, db } from "../../../firebase-config"
 import {addDoc, collection, serverTimestamp} from 'firebase/firestore'
 
 const style = {
@@ -18,10 +18,10 @@ const SendMessage = () => {
             alert('Please enter a valid message')
             return
         }
-        // const {uid, displayName} = auth.currentUser;
+        const {uid, displayName} = auth.currentUser;
         await addDoc(collection(db, 'messages'), {
             text: input,
-            // name: displayName,
+            name: displayName,
             uid,
             timestamp: serverTimestamp()
         })
