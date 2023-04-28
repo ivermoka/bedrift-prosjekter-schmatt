@@ -1,9 +1,9 @@
 import React from 'react'
-import Searchbar from "./searchbar"
+import Searchbar from "./components/searchbar"
 export default function Navbar() {
     return (
         <>
-            <nav className=' flex flex-row h-20'>
+            <nav className=' flex flex-row w-screen h-20'>
                 <div id='left' className=' flex w-3/5 bg-gray-900 '>
                     <div className='w-[100px]'>  <img className=' h-full w-full ml-20 ' src={"ailogofortesting.webp"} /></div>
                 </div>
