@@ -19,12 +19,17 @@ module.exports = {
         "border-color": "#707070",
         "button-active": "#212023",
         "common": "#171717",
+        "message-recieved": "#212023",
+        "message-sent": "#3A393B",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      textShadow: {
+        "messages": " text-shadow: 0 0 3px #FF0000",
+      }
     },
   },
   plugins: [],

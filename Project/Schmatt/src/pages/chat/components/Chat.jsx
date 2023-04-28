@@ -26,7 +26,7 @@ const Chat = () => {
   }, []);
   return (
     <>
-        <div className=' w-[65%] border-r-[1px] border-border-color h-full flex flex-col'>
+        <div className=' overflow-scroll w-[65%] border-r-[1px] border-border-color h-full flex flex-col pb-20 pt-10'>
             {/* disable until login/signup system is functionable */}
           {messages.map((message) => (
               <Message key={message.id} message={message} />
