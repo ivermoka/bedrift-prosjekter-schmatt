@@ -9,7 +9,7 @@ const style = {
     button: `p-3 bg-button-active rounded-full opacity-75`,
 }
 
-const SendMessage = () => {
+const SendMessage = ({scroll}) => {
     const [input, setInput] = useState('')
 
     const sendMessage = async (e) => {
@@ -25,6 +25,7 @@ const SendMessage = () => {
             uid,
             timestamp: serverTimestamp()
         })
+        scroll.current.scrollIntoView({behavior: 'smooth'})
         setInput('');
     }
 
