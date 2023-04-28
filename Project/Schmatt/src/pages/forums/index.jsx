@@ -5,8 +5,9 @@ export default function forums() {
 
     return (
         <>
-            <Navbar />
-
+            <main >
+                <Navbar />
+            </main>
         </>
     );
 }
