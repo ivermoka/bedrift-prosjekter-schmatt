@@ -1,6 +1,6 @@
-import Navbar from "../Layout"
+import Navbar from "./../navbarfolder/navbar"
 
-export default function f() {
+export default function forums() {
 
 
     return (
