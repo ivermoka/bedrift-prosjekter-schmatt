@@ -4,6 +4,8 @@ import GoogleButton from "react-google-button";
 import { auth } from "../../../firebase-config";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
+
+// temporary
 const style = {
     wrapper: `flex justify-center`
 }
