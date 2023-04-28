@@ -1,5 +1,9 @@
 import React from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithRedirect,
+} from "firebase/auth";
 import { auth } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
 import Button from "./components/submit-button";
@@ -23,6 +27,11 @@ export default function LoginForm() {
     } catch (error) {
       console.log("Login Failed: ", error);
     }
+  };
+
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
   };
 
   return (
@@ -87,8 +96,25 @@ export default function LoginForm() {
             </div>
             {/*Microsoft and google logins wrapper */}
             <div className="h-full w-44 py-2 flex flex-col justify-center items-center gap-2">
-              <div className="h-11 w-full border border-border-color cursor-pointer"></div>
-              <div className="h-11 w-full border border-border-color cursor-pointer"></div>
+              <div
+                onClick={googleSignIn}
+                className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2"
+              >
+                <img
+                  src={"google.png"}
+                  alt="google logo"
+                  className="h-1/3 aspect-square"
+                />
+                Continue with Google
+              </div>
+              <div className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2">
+                <img
+                  src={"microsoft.avif"}
+                  alt="google logo"
+                  className="h-1/3 aspect-square"
+                />
+                Continue with Microsoft
+              </div>
             </div>
           </div>
           <i className="m-0 p-0 text-sm text-red-700">
