@@ -130,13 +130,8 @@ export default function SignupForm() {
           <i className="m-0 p-0 text-sm text-red-700">
             {errors.password?.message}
           </i>
-          {passwordsMatch && (
-            <i className="m-0 p-0 text-sm text-red-700">
-              *Passwords do not match
-            </i>
-          )}
           {/* Login button */}
-          <Button text="Log In" />
+          <Button text="Register" />
         </form>
       </div>
     </div>
