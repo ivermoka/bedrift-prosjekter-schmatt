@@ -14,17 +14,11 @@ const Message = ({ message }) => {
       ? `${style.sent}`
       : `${style.received}`;
 
-  const timestamp = new Date(message.timestamp.seconds * 1000);
-
-  const timestampString = `${timestamp.toLocaleDateString()} ${timestamp.toLocaleTimeString()}`;
-
   return (
     <div>
 
       <div className={`${style.message} ${messageClass}`}>
-        <p className={style.name}>
-          {message.name} {timestampString}
-        </p>
+        <p className={style.name}>{message.name}</p>
         <p>{message.text}</p>
       </div>
     </div>
