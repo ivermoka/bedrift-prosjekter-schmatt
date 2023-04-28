@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithRedirect,
+} from "firebase/auth";
 import { auth } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
 import Button from "./../login/components/submit-button";
@@ -18,7 +23,7 @@ export default function SignupForm() {
     },
   });
 
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [passwordsMatch, setPasswordsMatch] = useState(true); //Ikke ferdig med passwordsdontmatch popupen, den funker ikke ennå
   const [passwordsDontMatchPopup, setPasswordsDontMatchPopup] = useState(false);
 
   const onSubmit = async (data) => {
@@ -40,6 +45,11 @@ export default function SignupForm() {
     } catch (error) {
       console.log("Failed creating account: ", error);
     }
+  };
+
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
   };
 
   return (
@@ -120,7 +130,10 @@ export default function SignupForm() {
             </div>
             {/*Microsoft and google logins wrapper */}
             <div className="h-full w-44 py-2 flex flex-col justify-center items-center gap-2">
-              <div className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2">
+              <div
+                onClick={googleSignIn}
+                className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2"
+              >
                 <img
                   src={"google.png"}
                   alt="google logo"
