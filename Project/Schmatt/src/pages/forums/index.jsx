@@ -1,4 +1,4 @@
-import Navbar from "./../layout"
+import Navbar from "../Layout"
 
 export default function f() {
 
