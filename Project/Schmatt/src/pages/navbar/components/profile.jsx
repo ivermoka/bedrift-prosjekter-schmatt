@@ -4,15 +4,10 @@ import { useState } from "react";
 import LogOut from "./profile-dropdown";
 
 export default function profile() {
-  const [profileDropdown, setProfileDropdown] = useState(false);
+  const [dropdownState, setDropdownState] = useState(false);
   const toggleDropdown = () => {
-    if (profileDropdown === false) {
-      console.log("expand");
-      setProfileDropdown(true);
-    } else {
-      console.log("close");
-      setProfileDropdown(false);
-    }
+    console.log("toggle dropdown");
+    // setDropdownState(!dropdownState); funker ikke akk nå vet ikke hvorfor må fikses
   };
   const [user, setUser] = useState({});
   onAuthStateChanged(auth, (currentUser) => {
@@ -27,6 +22,7 @@ export default function profile() {
           height="52.864"
           viewBox="0 0 52.864 52.864"
           className="cursor-pointer"
+          onClick={toggleDropdown}
         >
           <path
             id="Icon_awesome-user-circle"
@@ -38,7 +34,7 @@ export default function profile() {
         </svg>
         <h1 className="text-[#707070]">{user.displayName}</h1>
       </div>
-      {profileDropdown && <LogOut />}
+      {dropdownState && <LogOut />}
     </div>
   );
 }
