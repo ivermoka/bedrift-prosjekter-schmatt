@@ -11,7 +11,6 @@ import { useLogin } from "./../login/components/github-login";
 import Button from "./../login/components/submit-button";
 import { addDoc, collection } from "firebase/firestore";
 
-
 export default function SignupForm() {
   const {
     register,
@@ -27,6 +26,8 @@ export default function SignupForm() {
 
   const [passwordsMatch, setPasswordsMatch] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onSubmit = async (data) => {
     if (data.password === data.confirmPassword) {
       setPasswordsMatch(false);
@@ -40,7 +41,7 @@ export default function SignupForm() {
         data.email,
         data.password
       );
-        
+
       await updateProfile(user, {
         displayName: data.username,
       });
@@ -50,6 +51,7 @@ export default function SignupForm() {
       console.log("Account created successfully: ", user.displayName);
     } catch (error) {
       console.log("Failed creating account: ", error);
+      setErrorMessage(error.message);
     }
   };
 
@@ -176,9 +178,20 @@ export default function SignupForm() {
               *Passwords do not match
             </i>
           )}
+          <i className="m-0 p-0 text-sm text-red-700">{errorMessage}</i>
           {/* Login button */}
           <Button text="Register" />
         </form>
+      </div>
+      <div className="h-1/6 w-full flex justify-center items-center">
+        <span className="text-black">
+          Already have an account? Log In{" "}
+          <a href="./login">
+            <span className="text-blue-500 cursor-pointer hover:underline">
+              here
+            </span>
+          </a>
+        </span>
       </div>
     </div>
   );

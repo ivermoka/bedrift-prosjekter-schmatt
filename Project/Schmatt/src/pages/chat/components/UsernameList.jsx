@@ -20,7 +20,7 @@ const UsernameList = () => {
   }, []);
 
   return (
-    <div className='w-[16%] h-full flex justify-center'>
+    <div className='w-[16%] h-full flex flex-col'>
       {users.map((user) => (
         <User displayName={user.displayName || ''} />
       ))}
