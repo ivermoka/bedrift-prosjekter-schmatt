@@ -15,10 +15,8 @@ const Chat = () => {
     const q = query(collection(db, 'messages'), orderBy('timestamp'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let messages = [];
-      console.log("test1")
       querySnapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
-        console.log("test")
       });
       setMessages(messages);
       console.log(messages)

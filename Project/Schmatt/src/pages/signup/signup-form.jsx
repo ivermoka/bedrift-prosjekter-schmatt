@@ -44,7 +44,7 @@ export default function SignupForm() {
       await updateProfile(user, {
         displayName: data.username,
       });
-      await addDoc(collection(db, "messages"), {
+      await addDoc(collection(db, "usernames"), {
         displayName: data.username,
       });
       console.log("Account created successfully: ", user.displayName);
