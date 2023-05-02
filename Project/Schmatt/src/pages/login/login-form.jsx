@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
+import { useLogin } from "./components/github-login";
 import Button from "./components/submit-button";
 
 export default function LoginForm() {
@@ -33,6 +34,8 @@ export default function LoginForm() {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
   };
+
+  const { login, isPending } = useLogin();
 
   return (
     // Wrapping div
@@ -107,13 +110,16 @@ export default function LoginForm() {
                 />
                 Continue with Google
               </div>
-              <div className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2">
+              <div
+                onClick={login}
+                className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2"
+              >
                 <img
-                  src={"microsoft.avif"}
+                  src={"github.png"}
                   alt="google logo"
                   className="h-1/3 aspect-square"
                 />
-                Continue with Microsoft
+                Continue with GitHub
               </div>
             </div>
           </div>
