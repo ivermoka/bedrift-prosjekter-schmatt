@@ -38,8 +38,12 @@ export default function SignupForm() {
         data.email,
         data.password
       );
+        
       await updateProfile(user, {
         displayName: data.username,
+      });
+      await addDoc(collection(db, "messages"), {
+        displayName
       });
       console.log("Account created successfully", displayName);
     } catch (error) {

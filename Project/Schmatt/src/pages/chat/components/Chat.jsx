@@ -27,11 +27,13 @@ const Chat = () => {
   }, []);
   return (
     <>
-        <div className=' overflow-scroll w-[65%] border-r-[1px] border-border-color min-h-full flex flex-col pb-100 pt-10'>
-            {/* disable until login/signup system is functionable */}
+        <div className=' overflow-scroll w-[65%] border-r-[1px] border-border-color min-h-full flex flex-col pb-12 pt-10'>
+            
           {messages.map((message) => (
               <Message key={message.id} message={message} />
             ))}
+          
+          
           <SendMessage scroll={scroll} />
           <span ref={scroll}></span>
           
