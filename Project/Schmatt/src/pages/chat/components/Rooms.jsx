@@ -1,7 +1,10 @@
 import React from "react";
 import RoomButton from "./RoomButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { query, collection, onSnapshot, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from '@/firebase-configSchmatt';
+
 
 const Rooms = () => {
   const {
@@ -14,9 +17,31 @@ const Rooms = () => {
     },
   });
 
-  const onSubmit = async (data) => {
+  const [nameOfRoom, setNameOfRoom] = useState("")
+
+  const onSubmit = async (data, e) => {
     console.log("Room created! Name:", data.roomName);
+    setNameOfRoom(data.roomName)
+    e.preventDefault();
+    await addDoc(collection(db, "rooms"), {
+      roomName: nameOfRoom,
+      timestamp: serverTimestamp(),
+    });
   };
+
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const q = query(collection(db, 'rooms'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let rooms = [];
+      querySnapshot.forEach((doc, data) => {
+        rooms.push({ ...doc.data(), id: doc.id, roomName: nameOfRoom });
+      });
+      setRooms(rooms);
+    });
+    return () => unsubscribe();
+  }, []);
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
       {/* room/new person tab */}
@@ -41,6 +66,9 @@ const Rooms = () => {
           Add
         </button>
       </form> */}
+      {rooms.map((room) => (
+        <RoomButton roomName={nameOfRoom} />
+      ))}
     </div>
   );
 };
