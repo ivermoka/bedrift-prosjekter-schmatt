@@ -4,16 +4,7 @@ import { useState } from "react";
 import LogOut from "./profile-dropdown";
 
 export default function profile() {
-  const [profileDropdown, setProfileDropdown] = useState(false);
-  const toggleDropdown = () => {
-    if (profileDropdown === false) {
-      console.log("expand");
-      setProfileDropdown(true);
-    } else {
-      console.log("close");
-      setProfileDropdown(false);
-    }
-  };
+  const [dropdownState, setDropdownState] = useState(true);
   const [user, setUser] = useState({});
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -38,7 +29,7 @@ export default function profile() {
         </svg>
         <h1 className="text-[#707070]">{user.displayName}</h1>
       </div>
-      {profileDropdown && <LogOut />}
+      {dropdownState && <LogOut />}
     </div>
   );
 }
