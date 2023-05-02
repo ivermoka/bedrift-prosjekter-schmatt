@@ -54,10 +54,8 @@ export default function SignupForm() {
   };
 
   const googleSignIn = () => {
-    
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
-    
     
   };
 

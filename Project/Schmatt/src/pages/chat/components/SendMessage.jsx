@@ -24,6 +24,7 @@ const SendMessage = ({ scroll }) => {
       name: displayName,
       uid,
       timestamp: serverTimestamp(),
+      room: currentRoom
     });
     scroll.current.scrollIntoView({ behavior: "smooth" });
     setInput("");
