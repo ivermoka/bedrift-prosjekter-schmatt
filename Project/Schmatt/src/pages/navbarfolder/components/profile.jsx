@@ -27,7 +27,6 @@ export default function profile() {
           height="52.864"
           viewBox="0 0 52.864 52.864"
           className="cursor-pointer"
-          onClick={toggleDropdown}
         >
           <path
             id="Icon_awesome-user-circle"
