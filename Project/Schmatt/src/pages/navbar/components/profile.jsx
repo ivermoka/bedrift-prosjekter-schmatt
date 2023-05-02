@@ -1,4 +1,4 @@
-import { auth } from "./../../../firebase-config";
+import { auth } from "../../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import LogOut from "./profile-dropdown";

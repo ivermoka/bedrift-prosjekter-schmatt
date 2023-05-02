@@ -1,4 +1,4 @@
-import Navbar from "./../navbarfolder/navbar"
+import Navbar from "../navbar/navbar"
 import Forumparent from "./components/forumselection"
 
 
