@@ -7,7 +7,7 @@ export default function profile() {
   const [dropdownState, setDropdownState] = useState(false);
   const toggleDropdown = () => {
     console.log("toggle dropdown");
-    // setDropdownState(!dropdownState); funker ikke akk nå vet ikke hvorfor må fikses
+    // setDropdownState(!dropdownState);  //funker ikke akk nå vet ikke hvorfor må fikses
   };
   const [user, setUser] = useState({});
   onAuthStateChanged(auth, (currentUser) => {
