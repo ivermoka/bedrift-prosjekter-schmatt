@@ -1,6 +1,5 @@
 import React from 'react'
 import Rooms from './components/Rooms'
-import User from './components/User'
 import SendMessage from './components/sendMessage'
 import Message from './components/Message'
 import Chat from './components/Chat'
@@ -8,6 +7,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../../firebase-config';
 import {query, collection, orderBy, onSnapshot} from "firebase/firestore" ; 
 import Navbar from '../navbarfolder/navbar'
+import UsernameList from './components/UsernameList'
 
 
 
@@ -36,7 +36,7 @@ const index = () => {
           
           <Rooms />
           <Chat />
-          <User />
+          <UsernameList />
           
           
         </div>
