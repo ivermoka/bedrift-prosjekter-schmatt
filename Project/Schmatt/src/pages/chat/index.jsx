@@ -6,7 +6,7 @@ import Chat from './components/Chat'
 import { useState, useEffect } from 'react'
 import { db } from '../../firebase-config';
 import {query, collection, orderBy, onSnapshot} from "firebase/firestore" ; 
-import Navbar from '../navbarfolder/navbar'
+import Navbar from '../navbar/navbar'
 import UsernameList from './components/UsernameList'
 
 
@@ -32,7 +32,7 @@ const index = () => {
     <>
       <div className='overflow-hidden max-h-screen'>
         <Navbar />
-        <div className=' w-screen h-screen bg-rich-black flex flex-row'>
+        <div className='mt-14 w-screen h-screen bg-rich-black flex flex-row'>
           
           <Rooms />
           <Chat />
