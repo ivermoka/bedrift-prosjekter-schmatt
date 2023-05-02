@@ -14,7 +14,6 @@ const UsernameList = () => {
         users.push({ ...doc.data(), id: doc.id });
       });
       setUsers(users);
-      console.log(users);
     });
     return () => unsubscribe();
   }, []);
