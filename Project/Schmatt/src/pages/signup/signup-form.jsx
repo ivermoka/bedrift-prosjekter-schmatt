@@ -5,10 +5,12 @@ import {
   GoogleAuthProvider,
   signInWithRedirect,
 } from "firebase/auth";
-import { auth } from "./../../firebase-config";
+import { auth, db } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
 import { useLogin } from "./../login/components/github-login";
 import Button from "./../login/components/submit-button";
+import { addDoc, collection } from "firebase/firestore";
+
 
 export default function SignupForm() {
   const {
@@ -43,9 +45,9 @@ export default function SignupForm() {
         displayName: data.username,
       });
       await addDoc(collection(db, "messages"), {
-        displayName
+        displayName: data.username,
       });
-      console.log("Account created successfully", displayName);
+      console.log("Account created successfully: ", user.displayName);
     } catch (error) {
       console.log("Failed creating account: ", error);
     }
