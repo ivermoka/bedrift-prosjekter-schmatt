@@ -26,6 +26,8 @@ export default function SignupForm() {
 
   const [passwordsMatch, setPasswordsMatch] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onSubmit = async (data) => {
     if (data.password === data.confirmPassword) {
       setPasswordsMatch(false);
@@ -49,6 +51,7 @@ export default function SignupForm() {
       console.log("Account created successfully: ", user.displayName);
     } catch (error) {
       console.log("Failed creating account: ", error);
+      setErrorMessage(error.message);
     }
   };
 
@@ -175,6 +178,7 @@ export default function SignupForm() {
               *Passwords do not match
             </i>
           )}
+          <i className="m-0 p-0 text-sm text-red-700">{errorMessage}</i>
           {/* Login button */}
           <Button text="Register" />
         </form>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
@@ -21,12 +21,15 @@ export default function LoginForm() {
     },
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onSubmit = async (data) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       console.log("Logged in succesfully");
     } catch (error) {
       console.log("Login Failed: ", error);
+      setErrorMessage(error.message);
     }
   };
 
@@ -129,6 +132,7 @@ export default function LoginForm() {
           <i className="m-0 p-0 text-sm text-red-700">
             {errors.password?.message}
           </i>
+          <i className="m-0 p-0 text-sm text-red-700">{errorMessage}</i>
           {/* Login button */}
           <Button text="Log In" />
         </form>
