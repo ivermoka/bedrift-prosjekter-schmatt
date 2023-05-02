@@ -14,6 +14,7 @@ import UsernameList from './components/UsernameList'
 const index = () => {
   const [messages, setMessages] = useState([]);
   
+  
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('timestamp'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -28,9 +29,11 @@ const index = () => {
     });
     return () => unsubscribe();
   }, []);
+  
   return (
     <>
       <div className='overflow-hidden max-h-screen'>
+        
         <Navbar />
         <div className='mt-14 w-screen h-screen bg-rich-black flex flex-row'>
           

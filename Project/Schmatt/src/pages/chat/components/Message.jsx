@@ -15,7 +15,7 @@ const Message = ({ message }) => {
       : `${style.received}`;
 
   return (
-    <div>
+    <div >
       <div className={`${style.message} ${messageClass}`}>
         <p className={style.name}>{message.name}</p>
         <p>{message.text}</p>
