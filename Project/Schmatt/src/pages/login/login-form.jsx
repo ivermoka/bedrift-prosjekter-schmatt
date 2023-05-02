@@ -133,6 +133,14 @@ export default function LoginForm() {
           <Button text="Log In" />
         </form>
       </div>
+      <span className="text-black text-center">
+        Don't have an account? Create one{" "}
+        <a href="./signup">
+          <span className="text-blue-500 cursor-pointer hover:underline">
+            here
+          </span>
+        </a>
+      </span>
     </div>
   );
 }

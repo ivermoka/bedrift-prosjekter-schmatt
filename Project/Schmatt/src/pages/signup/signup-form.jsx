@@ -11,7 +11,6 @@ import { useLogin } from "./../login/components/github-login";
 import Button from "./../login/components/submit-button";
 import { addDoc, collection } from "firebase/firestore";
 
-
 export default function SignupForm() {
   const {
     register,
@@ -40,7 +39,7 @@ export default function SignupForm() {
         data.email,
         data.password
       );
-        
+
       await updateProfile(user, {
         displayName: data.username,
       });
@@ -54,11 +53,8 @@ export default function SignupForm() {
   };
 
   const googleSignIn = () => {
-    
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
-    
-    
   };
 
   const { login, isPending } = useLogin();
@@ -182,6 +178,16 @@ export default function SignupForm() {
           {/* Login button */}
           <Button text="Register" />
         </form>
+      </div>
+      <div className="h-1/6 w-full flex justify-center items-center">
+        <span className="text-black">
+          Already have an account? Log In{" "}
+          <a href="./login">
+            <span className="text-blue-500 cursor-pointer hover:underline">
+              here
+            </span>
+          </a>
+        </span>
       </div>
     </div>
   );
