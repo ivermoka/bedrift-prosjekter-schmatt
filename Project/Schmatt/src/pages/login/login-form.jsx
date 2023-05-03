@@ -7,6 +7,7 @@ import {
 import { auth } from "./../../firebase-config";
 import { useForm } from "react-hook-form";
 import { useLogin } from "./components/github-login";
+import { useRouter } from "next/router";
 import Button from "./components/submit-button";
 
 export default function LoginForm() {
@@ -22,11 +23,12 @@ export default function LoginForm() {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
-
+  const router = useRouter();
   const onSubmit = async (data) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       console.log("Logged in succesfully");
+      router.push("/chat");
     } catch (error) {
       console.log("Login Failed: ", error);
       setErrorMessage(error.message);
@@ -36,6 +38,7 @@ export default function LoginForm() {
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
+    router.push("/chat");
   };
 
   const { login, isPending } = useLogin();

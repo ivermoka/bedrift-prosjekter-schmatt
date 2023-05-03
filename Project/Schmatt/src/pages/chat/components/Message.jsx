@@ -1,6 +1,7 @@
 import React from "react";
 import { auth } from "../../../firebase-config";
 import { Timestamp } from "firebase/firestore";
+import { useRouter } from "next/router"; // import the useRouter hook
 
 const style = {
   message: `flex items-center drop-shadow-[4xl] mx-3 mb-3 py-2 px-3 rounded-tl-full rounded-tr-full cursor-pointer hover:bg-gray-800 hover:text-gray-8`,
@@ -13,35 +14,39 @@ const style = {
 };
 
 const Message = ({ message }) => {
-  const messageClass =
-    message.uid === auth.currentUser.uid
-      ? `${style.sent} `
-      : `${style.received}`;
+  const router = useRouter(); // initialize the useRouter hook
+  try {
+    const messageClass =
+      message.uid === auth.currentUser.uid
+        ? `${style.sent} `
+        : `${style.received}`;
 
-  const messageText =
-    message.uid === auth.currentUser.uid
-      ? `${style.sentText}`
-      : `${style.receivedText}`;
-  const timestamp = new Timestamp(
-    message.timestamp.seconds,
-    message.timestamp.nanoseconds
-  ).toDate();
-  const formattedTime = `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`; 
-  // temporary ^^, fix later
-  return (
-    <div>
-      <div className="w-full h-20 grid">
-        <div className={`flex ${messageText}`}>
-          <p className={style.name}>{message.name}</p>
-          <p className={style.timestamp}>{formattedTime}</p>
-          <div className={`${style.message} ${messageClass}`}>
-            
-            <p>{message.text}</p>
+    const messageText =
+      message.uid === auth.currentUser.uid
+        ? `${style.sentText}`
+        : `${style.receivedText}`;
+    const timestamp = new Timestamp(
+      message.timestamp.seconds,
+      message.timestamp.nanoseconds
+    ).toDate();
+    const formattedTime = `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.toDateString()}`;
+    return (
+      <div>
+        <div className="w-full h-20 grid">
+          <div className={`flex ${messageText}`}>
+            <p className={style.name}>{message.name}</p>
+            <div className={`${style.message} ${messageClass}`}>
+              <p>{message.text}</p>
+              <p className={style.timestamp}>{formattedTime}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } catch (TypeError) {
+    router.push("/signup");
+    return null;
+  }
 };
 
 export default Message;

@@ -36,7 +36,7 @@ export default function profile() {
             fill="#fff"
           />
         </svg>
-        <h1 className="text-[#707070]">{user.displayName}</h1>
+        <h1 className="text-[#707070]"></h1>
       </div>
     </div>
   );
