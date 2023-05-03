@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
-const RoomButton = ({roomName}) => {
+const RoomButton = ({ setSelectedRoom, selectedRoom, room, cum }) => {
+  function handleRoomClick() {
+    setSelectedRoom(room);
+  }
+
   const [button, setButton] = useState(true);
 
   function changeButton() {
@@ -14,10 +18,11 @@ const RoomButton = ({roomName}) => {
   return (
     <button
       id="room-button"
-      // onClick={handleRoomClick}
+      onClick={handleRoomClick}
+      onMouseOver={cum}
       className={`  relative border-[1px] border-border-color w-[90%] p-5 bg-button-active rounded-sm ${buttonClass}`}
     >
-      <p>{roomName}</p>
+      <p>{room}</p>
     </button>
   );
 };
