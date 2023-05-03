@@ -82,7 +82,7 @@ const Rooms = () => {
         </button>
       </form> */}
       {rooms.map((room) => (
-        <RoomButton onClick={() => handleRoomClick(room.name)} roomName={room.displayName} />
+        <RoomButton handleRoomClick={handleRoomClick} roomName={room.displayName} />
       ))}
     </div>
   );
