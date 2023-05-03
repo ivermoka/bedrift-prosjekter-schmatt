@@ -3,14 +3,24 @@ import Message from "./Message";
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { db } from "../../../firebase-config";
-import { query, collection, orderBy, onSnapshot } from "firebase/firestore";
+import {
+  query,
+  collection,
+  orderBy,
+  onSnapshot,
+  where,
+} from "firebase/firestore";
 
-const Chat = () => {
+const Chat = (selectedRoom) => {
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
 
   useEffect(() => {
-    const q = query(collection(db, "messages"), orderBy("timestamp"));
+    const q = query(
+      collection(db, "messages"),
+      where("room", "==", selectedRoom),
+      orderBy("timestamp")
+    );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let messages = [];
       querySnapshot.forEach((doc) => {
