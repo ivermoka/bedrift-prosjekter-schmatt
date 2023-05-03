@@ -49,10 +49,11 @@ const Rooms = () => {
     });
     return () => unsubscribe();
   }, []);
-
-  const getRoomName = () => {
-    console.log("helias")
-  }
+  const [selectedRoom, setSelectedRoom] = useState('');
+  const handleRoomClick = (roomName) => {
+    setSelectedRoom(roomName);
+    console.log(selectedRoom, "gotten");
+  };
 
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
@@ -81,7 +82,7 @@ const Rooms = () => {
         </button>
       </form> */}
       {rooms.map((room) => (
-        <RoomButton getRoomName={getRoomName} roomName={room.displayName} />
+        <RoomButton onClick={() => handleRoomClick(room.name)} roomName={room.displayName} />
       ))}
     </div>
   );
