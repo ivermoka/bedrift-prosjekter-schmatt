@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "../../../firebase-config";
 import { Timestamp } from "firebase/firestore";
-import { useRouter } from "next/router"; // import the useRouter hook
+import { useRouter } from "next/router";
 
 const style = {
   message: `flex items-center drop-shadow-[4xl] mx-3 mb-3 py-2 px-3 rounded-tl-full rounded-tr-full cursor-pointer hover:bg-gray-800 hover:text-gray-8`,
@@ -14,7 +14,7 @@ const style = {
 };
 
 const Message = ({ message }) => {
-  const router = useRouter(); // initialize the useRouter hook
+  const router = useRouter();
   try {
     const messageClass =
       message.uid === auth.currentUser.uid
