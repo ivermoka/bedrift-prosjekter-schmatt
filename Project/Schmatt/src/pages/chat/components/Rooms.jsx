@@ -13,7 +13,7 @@ import {
 import { db } from "@/firebase-configSchmatt";
 import handler from "@/pages/api/helloSchmatt";
 
-const Rooms = () => {
+const Rooms = ({ selectedRoom, setSelectedRoom }) => {
   const [input, setInput] = useState("");
   const {
     register,
@@ -56,8 +56,6 @@ const Rooms = () => {
     });
     return () => unsubscribe();
   }, []);
-
-  const [selectedRoom, setSelectedRoom] = useState("");
 
   const cum = () => {
     console.log(selectedRoom);

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const RoomButton = ({ setSelectedRoom, selectedRoom, room, cum }) => {
   function handleRoomClick() {
+    console.log(selectedRoom);
     setSelectedRoom(room);
   }
 
