@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth, storage } from "./../../firebase-config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { onAuthStateChanged } from "firebase/auth";
@@ -6,11 +6,29 @@ import { onAuthStateChanged } from "firebase/auth";
 export default function ProfilePage() {
   const [user, setUser] = useState({});
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (user.photoURL) {
+      const img = new Image();
+      img.onload = () => {
+        setUser((prevUser) => ({
+          ...prevUser,
+          photoURL: url,
+        }));
+      };
+      img.src = user.photoURL;
+    }
+  }, [user.photoURL]);
 
   const handleImageUpload = (e) => {
+    console.log(user.photoURL);
     const file = e.target.files[0];
     const storageRef = ref(storage, `users/${user.uid}/profilePicture`);
     uploadBytes(storageRef, file).then(() => {
@@ -29,14 +47,17 @@ export default function ProfilePage() {
         {/*Image and username*/}
         <div className="h-40 w-full flex items-end">
           <div className="self-center w-1/2 aspect-square flex flex-col">
-            <img
-              className="aspect-square w-full self-center"
-              src={user.photoURL}
-            />
-            <label className="border border-border-color bg-rich-black rounded-md">
-              <input type="file" onChange={handleImageUpload} hidden />
-              Change picture
-            </label>
+            {user.photoURL ? (
+              <img
+                className="aspect-square w-full self-center"
+                src={user.photoURL}
+              />
+            ) : (
+              <label className="border border-border-color bg-rich-black rounded-md">
+                <input type="file" onChange={handleImageUpload} hidden />
+                Change picture
+              </label>
+            )}
           </div>
           <h1 className="mb-6 text-7xl text-text-color">{user.displayName}</h1>
         </div>
