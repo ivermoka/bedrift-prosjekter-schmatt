@@ -2,9 +2,16 @@ import React from "react";
 import RoomButton from "./RoomButton";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { query, collection, onSnapshot, addDoc, serverTimestamp, orderBy } from "firebase/firestore";
-import { db } from '@/firebase-configSchmatt';
-
+import {
+  query,
+  collection,
+  onSnapshot,
+  addDoc,
+  serverTimestamp,
+  orderBy,
+} from "firebase/firestore";
+import { db } from "@/firebase-configSchmatt";
+import handler from "@/pages/api/helloSchmatt";
 
 const Rooms = () => {
   const [input, setInput] = useState("");
@@ -18,7 +25,7 @@ const Rooms = () => {
     },
   });
 
-  const [nameOfRoom, setNameOfRoom] = useState("")
+  const [nameOfRoom, setNameOfRoom] = useState("");
 
   const onSubmit = async (data, e) => {
     if (input === "") {
@@ -26,7 +33,7 @@ const Rooms = () => {
       return;
     }
     console.log("Room created! Name:", data.roomName);
-    
+
     e.preventDefault();
     await addDoc(collection(db, "rooms"), {
       displayName: data.roomName,
@@ -38,20 +45,22 @@ const Rooms = () => {
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, 'rooms'), orderBy("timestamp"));
+    const q = query(collection(db, "rooms"), orderBy("timestamp"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let rooms = [];
       querySnapshot.forEach((doc, data) => {
-        rooms.push({ ...doc.data(), id: doc.id});
+        rooms.push({ ...doc.data(), id: doc.id });
       });
       setRooms(rooms);
       console.log(nameOfRoom);
     });
     return () => unsubscribe();
   }, []);
-  const [selectedRoom, setSelectedRoom] = useState('');
-  const handleRoomClick = (roomName) => {
-    console.log(roomName);
+
+  const [selectedRoom, setSelectedRoom] = useState("");
+
+  const cum = () => {
+    console.log(selectedRoom);
   };
 
   return (
@@ -81,7 +90,12 @@ const Rooms = () => {
         </button>
       </form> */}
       {rooms.map((room) => (
-        <RoomButton onClick={() => handleRoomClick(room.name)} roomName={room.displayName} />
+        <RoomButton
+          room={room.displayName}
+          selectedRoom={selectedRoom}
+          setSelectedRoom={setSelectedRoom}
+          cum={cum}
+        />
       ))}
     </div>
   );
