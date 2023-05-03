@@ -19,13 +19,11 @@ export default function Discmenu() {
                                 <a href="/"> s/CodingTips</a>
                             </Disclosure.Panel>
                             <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                s/CodingNews
+                                <a href="/"> s/CodingNews</a>
                             </Disclosure.Panel><Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                s/Webdevelopment
+                                <a href="/"> s/WebDevelopment</a>
                             </Disclosure.Panel><Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                s/CodingHelp
-                            </Disclosure.Panel><Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                s/CodingTips
+                                <a href="/"> s/CodingHelp</a>
                             </Disclosure.Panel>
                         </>
                     )}
