@@ -8,7 +8,7 @@ export default function LogOut() {
   };
   return (
     <div className="absolute mt-14 flex flex-col w-full -ml-4 border border-border-color bg-common">
-      <Item text="Profile" />
+      <Item text="Profile" link={"./../profile-page"} />
       <Item text="Settings" />
       <Item text="Sign Out" logout={logout} link={"./../"} />
     </div>

@@ -4,9 +4,9 @@ import { useState } from "react";
 import LogOut from "./profile-dropdown";
 
 export default function profile() {
-  const [dropdownState, setDropdownState] = useState(false);
+  const [dropdownState, setDropdownState] = useState(true);
   const toggleDropdown = () => {
-    console.log("toggle dropdown");
+    console.log("toggle dropdown, value:", dropdownState);
     setDropdownState(!dropdownState); //funker ikke akk nå vet ikke hvorfor må fikses alt bare crasher om du prøver å toggle dropdownen
   };
   const [user, setUser] = useState({});

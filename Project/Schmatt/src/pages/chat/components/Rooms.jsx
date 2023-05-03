@@ -2,11 +2,12 @@ import React from "react";
 import RoomButton from "./RoomButton";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { query, collection, onSnapshot, addDoc, serverTimestamp } from "firebase/firestore";
+import { query, collection, onSnapshot, addDoc, serverTimestamp, orderBy } from "firebase/firestore";
 import { db } from '@/firebase-configSchmatt';
 
 
 const Rooms = () => {
+  const [input, setInput] = useState("");
   const {
     register,
     handleSubmit,
@@ -20,28 +21,40 @@ const Rooms = () => {
   const [nameOfRoom, setNameOfRoom] = useState("")
 
   const onSubmit = async (data, e) => {
+    if (input === "") {
+      alert("Please enter a valid message");
+      return;
+    }
     console.log("Room created! Name:", data.roomName);
-    setNameOfRoom(data.roomName)
+    
     e.preventDefault();
     await addDoc(collection(db, "rooms"), {
-      roomName: nameOfRoom,
+      displayName: data.roomName,
       timestamp: serverTimestamp(),
     });
+    setInput("");
   };
 
   const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, 'rooms'));
+    const q = query(collection(db, 'rooms'), orderBy("timestamp"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let rooms = [];
       querySnapshot.forEach((doc, data) => {
-        rooms.push({ ...doc.data(), id: doc.id, roomName: nameOfRoom });
+        rooms.push({ ...doc.data(), id: doc.id});
       });
       setRooms(rooms);
+      console.log(nameOfRoom);
     });
     return () => unsubscribe();
   }, []);
+  const [selectedRoom, setSelectedRoom] = useState('');
+  const handleRoomClick = (roomName) => {
+    setSelectedRoom(roomName);
+    console.log(selectedRoom, "gotten");
+  };
+
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
       {/* room/new person tab */}
@@ -54,6 +67,8 @@ const Rooms = () => {
           type="text"
           placeholder="New room..."
           {...register("roomName", { required: "Provide room name" })}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
         />
         <button className=" bg-button-active w-1/3 rounded-md " type="submit">
           Create
@@ -67,7 +82,7 @@ const Rooms = () => {
         </button>
       </form> */}
       {rooms.map((room) => (
-        <RoomButton roomName={nameOfRoom} />
+        <RoomButton handleRoomClick={handleRoomClick} roomName={room.displayName} />
       ))}
     </div>
   );
