@@ -4,7 +4,7 @@ import { useState } from "react";
 import LogOut from "./profile-dropdown";
 
 export default function profile() {
-  const [dropdownState, setDropdownState] = useState(true);
+  const [dropdownState, setDropdownState] = useState(false);
   const toggleDropdown = () => {
     console.log("toggle dropdown, value:", dropdownState);
     setDropdownState(!dropdownState); //funker ikke akk nå vet ikke hvorfor må fikses alt bare crasher om du prøver å toggle dropdownen
@@ -14,7 +14,12 @@ export default function profile() {
     setUser(currentUser);
   });
   return (
-    <div className="flex flex-col">
+    <div
+      onMouseEnter={toggleDropdown}
+      onMouseLeave={toggleDropdown}
+      className="flex flex-col"
+    >
+      {dropdownState && <LogOut />}
       <div className="flex flex-row  gap-3 items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +27,6 @@ export default function profile() {
           height="52.864"
           viewBox="0 0 52.864 52.864"
           className="cursor-pointer"
-          onClick={toggleDropdown}
         >
           <path
             id="Icon_awesome-user-circle"
@@ -32,9 +36,8 @@ export default function profile() {
             fill="#fff"
           />
         </svg>
-        <h1 className="text-[#707070]"></h1>
+        <h1 className="text-[#707070]">{user.displayName}</h1>
       </div>
-      {dropdownState && <LogOut />}
     </div>
   );
 }

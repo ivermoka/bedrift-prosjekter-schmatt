@@ -7,7 +7,7 @@ export default function LogOut() {
     await signOut(auth);
   };
   return (
-    <div className="absolute mt-14 flex flex-col w-full -ml-4 border border-border-color bg-common">
+    <div className="absolute mt-12 flex flex-col w-full -ml-4 border border-border-color bg-common">
       <Item text="Profile" link={"./../profile-page"} />
       <Item text="Settings" />
       <Item text="Sign Out" logout={logout} link={"./../"} />

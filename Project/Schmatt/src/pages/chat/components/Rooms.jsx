@@ -51,8 +51,7 @@ const Rooms = () => {
   }, []);
   const [selectedRoom, setSelectedRoom] = useState('');
   const handleRoomClick = (roomName) => {
-    setSelectedRoom(roomName);
-    console.log(selectedRoom, "gotten");
+    console.log(roomName);
   };
 
   return (
@@ -82,7 +81,7 @@ const Rooms = () => {
         </button>
       </form> */}
       {rooms.map((room) => (
-        <RoomButton handleRoomClick={handleRoomClick} roomName={room.displayName} />
+        <RoomButton onClick={() => handleRoomClick(room.name)} roomName={room.displayName} />
       ))}
     </div>
   );
