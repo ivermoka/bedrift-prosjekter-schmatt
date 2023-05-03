@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "./../login/components/github-login";
 import Button from "./../login/components/submit-button";
 import { addDoc, collection } from "firebase/firestore";
+import { useRouter } from "next/router";
 
 export default function SignupForm() {
   const {
@@ -23,6 +24,7 @@ export default function SignupForm() {
       confirmPassword: "",
     },
   });
+  const router = useRouter();
 
   const [passwordsMatch, setPasswordsMatch] = useState(false);
 
@@ -49,6 +51,7 @@ export default function SignupForm() {
         displayName: data.username,
       });
       console.log("Account created successfully: ", user.displayName);
+      router.push("/chat");
     } catch (error) {
       console.log("Failed creating account: ", error);
       setErrorMessage(error.message);
@@ -58,6 +61,7 @@ export default function SignupForm() {
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(auth, provider);
+    router.push("/chat");
   };
 
   const { login, isPending } = useLogin();
