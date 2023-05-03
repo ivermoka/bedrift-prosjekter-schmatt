@@ -21,12 +21,13 @@ const Rooms = () => {
 
   const onSubmit = async (data, e) => {
     console.log("Room created! Name:", data.roomName);
-    setNameOfRoom(data.roomName)
+    
     e.preventDefault();
     await addDoc(collection(db, "rooms"), {
-      roomName: nameOfRoom,
+      displayName: data.roomName,
       timestamp: serverTimestamp(),
     });
+    // setNameOfRoom(data.roomName)
   };
 
   const [rooms, setRooms] = useState([]);
@@ -36,12 +37,14 @@ const Rooms = () => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let rooms = [];
       querySnapshot.forEach((doc, data) => {
-        rooms.push({ ...doc.data(), id: doc.id, roomName: nameOfRoom });
+        rooms.push({ ...doc.data(), id: doc.id});
       });
       setRooms(rooms);
+      console.log(nameOfRoom);
     });
     return () => unsubscribe();
   }, []);
+  
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
       {/* room/new person tab */}
@@ -67,7 +70,7 @@ const Rooms = () => {
         </button>
       </form> */}
       {rooms.map((room) => (
-        <RoomButton roomName={nameOfRoom} />
+        <RoomButton roomName={room.displayName} />
       ))}
     </div>
   );

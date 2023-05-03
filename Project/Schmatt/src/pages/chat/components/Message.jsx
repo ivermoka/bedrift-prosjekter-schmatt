@@ -26,14 +26,16 @@ const Message = ({ message }) => {
     message.timestamp.seconds,
     message.timestamp.nanoseconds
   ).toDate();
-  const formattedTime = `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.toDateString()}`;
+  const formattedTime = `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.toISOString().replace(/T/, ' ').replace(/\..+/, '')}`; 
+  // temporary ^^, fix later
   return (
     <div>
       <div className="w-full h-20 grid">
         <div className={`flex ${messageText}`}>
           <p className={style.name}>{message.name}</p>
+          <p className={style.timestamp}>{formattedTime}</p>
           <div className={`${style.message} ${messageClass}`}>
-            <p className={style.timestamp}>{formattedTime}</p>
+            
             <p>{message.text}</p>
           </div>
         </div>
