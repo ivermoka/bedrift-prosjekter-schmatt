@@ -9,7 +9,7 @@ const style = {
   button: `p-3 bg-button-active rounded-full opacity-75`,
 };
 
-const SendMessage = ({ scroll }) => {
+const SendMessage = ({ scroll, selectedRoom }) => {
   const [input, setInput] = useState("");
 
   const sendMessage = async (e) => {

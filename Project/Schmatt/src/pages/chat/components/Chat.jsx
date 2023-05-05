@@ -11,7 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 
-const Chat = (selectedRoom) => {
+const Chat = ({ selectedRoom }) => {
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
 
@@ -40,7 +40,7 @@ const Chat = (selectedRoom) => {
           ))}
         </div>
 
-        <SendMessage scroll={scroll} />
+        <SendMessage scroll={scroll} selectedRoom={selectedRoom} />
         <span ref={scroll}></span>
       </div>
     </>

@@ -5,13 +5,12 @@ const RoomButton = ({ setSelectedRoom, selectedRoom, room, cum }) => {
   function handleRoomClick() {
     console.log(selectedRoom);
     setSelectedRoom(room);
+    setButton((button) => !button);
   }
 
   const [button, setButton] = useState(true);
 
-  function changeButton() {
-    setButton((button) => !button);
-  }
+  function changeButton() {}
 
   const buttonClass = button
     ? "bg-common text-white scale-x-100 duration-75"
