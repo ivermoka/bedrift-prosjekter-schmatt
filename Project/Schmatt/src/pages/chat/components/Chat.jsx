@@ -36,9 +36,9 @@ const Chat = ({ selectedRoom }) => {
       <div className=" overflow-scroll w-[65%] border-r-[1px] border-border-color min-h-full flex flex-col pb-12 pt-10">
         <div className=" pb-20">
           {messages.map((message) => (
-            message.room === selectedRoom? (
-              <Message key={message.id} message={message} />
-            ) : null
+            message.room === selectedRoom
+              ? (<Message key={message.id} message={message} />) 
+              : null
           ))}
         </div>
 

@@ -10,8 +10,6 @@ const RoomButton = ({ setSelectedRoom, selectedRoom, room, cum }) => {
 
   const [button, setButton] = useState(true);
 
-  function changeButton() {}
-
   const buttonClass = button
     ? "bg-common text-white scale-x-100 duration-75"
     : " scale-x-[109%] translate-x-4 duration-75 p-5 rounded-sm";
