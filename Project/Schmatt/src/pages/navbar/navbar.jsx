@@ -4,7 +4,7 @@ import Profile from "./components/profile";
 export default function Navbar() {
   return (
     <>
-      <nav className=" flex flex-row w-screen h-14 z-10 bg-rich-black fixed mb-14">
+      <nav className=" flex flex-row w-screen h-14 z-10 bg-rich-black fixed mb-14 opacity-80  backdrop-blur-sm ">
         <div id="left" className=" flex w-3/5 ">
           <div className="w-[100px]">
             {" "}
