@@ -15,38 +15,33 @@ const style = {
 
 const Message = ({ message }) => {
   const router = useRouter(); // initialize the useRouter hook
-  try {
-    const messageClass =
-      message.uid === auth.currentUser.uid
-        ? `${style.sent} `
-        : `${style.received}`;
+  const messageClass =
+    message.uid === auth.currentUser.uid
+      ? `${style.sent} `
+      : `${style.received}`;
 
-    const messageText =
-      message.uid === auth.currentUser.uid
-        ? `${style.sentText}`
-        : `${style.receivedText}`;
-    const timestamp = new Timestamp(
-      message.timestamp.seconds,
-      message.timestamp.nanoseconds
-    ).toDate();
-    const formattedTime = `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.toDateString()}`;
-    return (
-      <div>
-        <div className="w-full h-20 grid">
-          <div className={`flex ${messageText}`}>
-            <p className={style.name}>{message.name}</p>
-            <div className={`${style.message} ${messageClass}`}>
-              <p>{message.text}</p>
-              <p className={style.timestamp}>{formattedTime}</p>
-            </div>
+  const messageText =
+    message.uid === auth.currentUser.uid
+      ? `${style.sentText}`
+      : `${style.receivedText}`;
+  // const timestamp = new Timestamp(
+  //   message.timestamp.seconds,
+  //   message.timestamp.nanoseconds
+  // ).toDate();
+  // const formattedTime = `${timestamp.getHours()}:${timestamp.getMinutes()} ${timestamp.toDateString()}`;
+  return (
+    <div>
+      <div className="w-full h-20 grid">
+        <div className={`flex ${messageText}`}>
+          <p className={style.name}>{message.name}</p>
+          <div className={`${style.message} ${messageClass}`}>
+            <p>{message.text}</p>
+            {/* <p className={style.timestamp}>{formattedTime}</p> */}
           </div>
         </div>
       </div>
-    );
-  } catch (TypeError) {
-    router.push("/signup");
-    return null;
-  }
+    </div>
+  );
 };
 
 export default Message;
