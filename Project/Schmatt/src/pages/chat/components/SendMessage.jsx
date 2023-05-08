@@ -9,7 +9,7 @@ const style = {
   button: `p-3 bg-button-active rounded-full opacity-75`,
 };
 
-const SendMessage = ({ scroll }) => {
+const SendMessage = ({ scroll, selectedRoom }) => {
   const [input, setInput] = useState("");
 
   const sendMessage = async (e) => {
@@ -33,6 +33,9 @@ const SendMessage = ({ scroll }) => {
   return (
     <form onSubmit={sendMessage} className={style.form}>
       <input
+        onMouseEnter={() => {
+          console.log("Currently selected room:", selectedRoom);
+        }}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         className={style.input}

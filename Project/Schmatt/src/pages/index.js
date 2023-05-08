@@ -1,9 +1,9 @@
-export default function Home() {
+import Home from './home/index';
+
+export default function HomePage() {
   return (
-    <main>
-      <a href="/signup">
-        <button>click</button>
-      </a>
-    </main>
+    <>
+      <Home />
+    </>
   );
 }

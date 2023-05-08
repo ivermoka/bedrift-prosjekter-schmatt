@@ -57,10 +57,6 @@ const Rooms = ({ selectedRoom, setSelectedRoom }) => {
     return () => unsubscribe();
   }, []);
 
-  const cum = () => {
-    console.log(selectedRoom);
-  };
-
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
       {/* room/new person tab */}
@@ -87,12 +83,16 @@ const Rooms = ({ selectedRoom, setSelectedRoom }) => {
           Add
         </button>
       </form> */}
+      <RoomButton
+        room={"General"}
+        selectedRoom={selectedRoom}
+        setSelectedRoom={setSelectedRoom}
+      />
       {rooms.map((room) => (
         <RoomButton
           room={room.displayName}
           selectedRoom={selectedRoom}
           setSelectedRoom={setSelectedRoom}
-          cum={cum}
         />
       ))}
     </div>

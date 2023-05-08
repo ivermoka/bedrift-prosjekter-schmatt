@@ -1,17 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-const RoomButton = ({ setSelectedRoom, selectedRoom, room, cum }) => {
+const RoomButton = ({ setSelectedRoom, selectedRoom, room }) => {
   function handleRoomClick() {
-    console.log(selectedRoom);
     setSelectedRoom(room);
+    setButton((button) => !button);
   }
 
   const [button, setButton] = useState(true);
-
-  function changeButton() {
-    setButton((button) => !button);
-  }
 
   const buttonClass = button
     ? "bg-common text-white scale-x-100 duration-75"
@@ -20,7 +16,6 @@ const RoomButton = ({ setSelectedRoom, selectedRoom, room, cum }) => {
     <button
       id="room-button"
       onMouseEnter={handleRoomClick}
-      onMouseOver={cum}
       className={`relative border-[1px] border-border-color w-[90%] p-5 bg-button-active rounded-sm ${buttonClass}`}
     >
       <p>{room}</p>
