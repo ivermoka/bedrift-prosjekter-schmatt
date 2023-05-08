@@ -15,7 +15,7 @@ const RoomButton = ({ setSelectedRoom, selectedRoom, room }) => {
   return (
     <button
       id="room-button"
-      onMouseEnter={handleRoomClick}
+      onClick={handleRoomClick}
       className={`relative border-[1px] border-border-color w-[90%] p-5 bg-button-active rounded-sm ${buttonClass}`}
     >
       <p>{room}</p>
