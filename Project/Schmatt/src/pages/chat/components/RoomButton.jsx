@@ -4,7 +4,6 @@ import { useState } from "react";
 const RoomButton = ({ setSelectedRoom, room, refresh, setRefresh }) => {
   function handleRoomClick() {
     setSelectedRoom(room);
-    setButton((button) => !button);
     setRefresh(!refresh);
   }
 
@@ -17,7 +16,7 @@ const RoomButton = ({ setSelectedRoom, room, refresh, setRefresh }) => {
     <button
       id="room-button"
       onClick={handleRoomClick}
-      className={`relative border-[1px] border-border-color w-[90%] p-5 bg-button-active rounded-sm ${buttonClass}`}
+      className={` bg-common relative border-[1px] duration-100 border-border-color w-[90%] p-5 rounded-sm active:scale-x-[109%] active:translate-x-4 active:bg-button-active `}
     >
       <p>{room}</p>
     </button>

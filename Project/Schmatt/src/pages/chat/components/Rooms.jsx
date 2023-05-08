@@ -60,6 +60,7 @@ const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh }) => {
 
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
+      <p>Selected room: {selectedRoom}</p>
       {/* room/new person tab */}
       <form
         onSubmit={handleSubmit(onSubmit)}
