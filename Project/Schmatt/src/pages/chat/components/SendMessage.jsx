@@ -33,6 +33,9 @@ const SendMessage = ({ scroll, selectedRoom }) => {
   return (
     <form onSubmit={sendMessage} className={style.form}>
       <input
+        onMouseEnter={() => {
+          console.log("Currently selected room:", selectedRoom);
+        }}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         className={style.input}
