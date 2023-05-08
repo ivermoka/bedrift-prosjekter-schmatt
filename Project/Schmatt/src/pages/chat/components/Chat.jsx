@@ -28,7 +28,6 @@ const Chat = ({ selectedRoom, refresh, setRefresh }) => {
         messages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(messages);
-      console.log(messages);
     });
     return () => unsubscribe();
   }, [selectedRoom, refresh]);
