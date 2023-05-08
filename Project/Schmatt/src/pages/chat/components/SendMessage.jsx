@@ -27,7 +27,7 @@ const SendMessage = ({ scroll, selectedRoom, refresh, setRefresh }) => {
       timestamp: serverTimestamp(),
       room: selectedRoom,
     });
-    // scroll.current.scrollIntoView({ behavior: "smooth" });
+    scroll.current.scrollIntoView({ behavior: "smooth" });
     setInput("");
   };
 
