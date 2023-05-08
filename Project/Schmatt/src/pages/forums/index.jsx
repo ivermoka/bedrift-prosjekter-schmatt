@@ -1,6 +1,6 @@
 import Navbar from "../navbar/navbar"
 import Selectforum from "./components/Selectforum__"
-import Forumhome from "./components/forum-home"
+
 
 export default function forums() {
     return (
@@ -13,7 +13,7 @@ export default function forums() {
 
                     </section>
                     <section className="flex flex-col  ">
-                        <Forumhome />
+
                     </section>
                 </div>
             </main>
