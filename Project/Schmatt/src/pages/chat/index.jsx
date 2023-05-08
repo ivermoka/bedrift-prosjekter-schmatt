@@ -8,6 +8,7 @@ import { db } from "../../firebase-config";
 import { query, collection, orderBy, onSnapshot } from "firebase/firestore";
 import Navbar from "../navbar/navbar";
 import UsernameList from "./components/UsernameList";
+import { ref } from "firebase/storage";
 
 const index = () => {
   const [messages, setMessages] = useState([]);
@@ -27,16 +28,24 @@ const index = () => {
 
   const [selectedRoom, setSelectedRoom] = useState("General");
 
+  const [refresh, setRefresh] = useState(false); //Rendere messages
+
   return (
     <>
       <div className="overflow-hidden max-h-screen">
         <Navbar />
         <div className="mt-14 w-screen h-screen bg-rich-black flex flex-row">
           <Rooms
+            refresh={refresh}
+            setRefresh={setRefresh}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
           />
-          <Chat selectedRoom={selectedRoom} />
+          <Chat
+            selectedRoom={selectedRoom}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
           <UsernameList />
         </div>
       </div>

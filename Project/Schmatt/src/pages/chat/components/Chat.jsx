@@ -10,8 +10,9 @@ import {
   onSnapshot,
   where,
 } from "firebase/firestore";
+import { ref } from "firebase/storage";
 
-const Chat = ({ selectedRoom }) => {
+const Chat = ({ selectedRoom, refresh, setRefresh }) => {
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
 
@@ -30,19 +31,24 @@ const Chat = ({ selectedRoom }) => {
       console.log(messages);
     });
     return () => unsubscribe();
-  }, []);
+  }, [selectedRoom, refresh]);
   return (
     <>
       <div className=" overflow-scroll w-[65%] border-r-[1px] border-border-color min-h-full flex flex-col pb-12 pt-10">
         <div className=" pb-20">
-          {messages.map((message) => (
-            message.room === selectedRoom
-              ? (<Message key={message.id} message={message} />) 
-              : null
-          ))}
+          {messages.map((message) =>
+            message.room === selectedRoom ? (
+              <Message key={message.id} message={message} />
+            ) : null
+          )}
         </div>
 
-        <SendMessage scroll={scroll} selectedRoom={selectedRoom} />
+        <SendMessage
+          scroll={scroll}
+          selectedRoom={selectedRoom}
+          refresh={refresh}
+          setRefresh={setRefresh}
+        />
         <span ref={scroll}></span>
       </div>
     </>

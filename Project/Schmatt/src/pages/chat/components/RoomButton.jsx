@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
-const RoomButton = ({ setSelectedRoom, selectedRoom, room }) => {
+const RoomButton = ({ setSelectedRoom, room, refresh, setRefresh }) => {
   function handleRoomClick() {
     setSelectedRoom(room);
     setButton((button) => !button);
+    setRefresh(!refresh);
   }
 
   const [button, setButton] = useState(true);
