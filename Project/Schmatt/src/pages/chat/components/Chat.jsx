@@ -12,9 +12,9 @@ import {
 } from "firebase/firestore";
 import { ref } from "firebase/storage";
 
-const Chat = ({ selectedRoom, refresh, setRefresh }) => {
+const Chat = ({ selectedRoom, refresh, setRefresh, scroll }) => {
   const [messages, setMessages] = useState([]);
-  const scroll = useRef();
+  
 
   useEffect(() => {
     const q = query(

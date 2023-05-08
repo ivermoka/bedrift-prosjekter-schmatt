@@ -9,9 +9,11 @@ import { query, collection, orderBy, onSnapshot } from "firebase/firestore";
 import Navbar from "../navbar/navbar";
 import UsernameList from "./components/UsernameList";
 import { ref } from "firebase/storage";
+import { useRef } from "react";
 
 const index = () => {
   const [messages, setMessages] = useState([]);
+  const scroll = useRef();
 
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("timestamp"));
@@ -21,7 +23,6 @@ const index = () => {
         messages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(messages);
-      console.log(messages);
     });
     return () => unsubscribe();
   }, []);
@@ -40,11 +41,13 @@ const index = () => {
             setRefresh={setRefresh}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
+            scroll={scroll}
           />
           <Chat
             selectedRoom={selectedRoom}
             refresh={refresh}
             setRefresh={setRefresh}
+            scroll={scroll}
           />
           <UsernameList />
         </div>

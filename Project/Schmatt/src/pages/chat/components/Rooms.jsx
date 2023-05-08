@@ -14,7 +14,7 @@ import { db } from "@/firebase-configSchmatt";
 import handler from "@/pages/api/helloSchmatt";
 import { ref } from "firebase/storage";
 
-const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh }) => {
+const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh, scroll }) => {
   const [input, setInput] = useState("");
   const {
     register,
@@ -85,13 +85,7 @@ const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh }) => {
           Add
         </button>
       </form> */}
-      <RoomButton
-        room={"General"}
-        selectedRoom={selectedRoom}
-        setSelectedRoom={setSelectedRoom}
-        refresh={refresh}
-        setRefresh={setRefresh}
-      />
+
       {rooms.map((room) => (
         <RoomButton
           room={room.displayName}
@@ -99,6 +93,7 @@ const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh }) => {
           setSelectedRoom={setSelectedRoom}
           refresh={refresh}
           setRefresh={setRefresh}
+          scroll={scroll}
         />
       ))}
     </div>
