@@ -1,24 +1,16 @@
-import { auth } from "../../../firebase-config";
-import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
+import getUser from "./../../../user";
 import LogOut from "./profile-dropdown";
 
 export default function profile() {
+  const user = getUser();
   const [dropdownState, setDropdownState] = useState(false);
   const toggleDropdown = () => {
     console.log("toggle dropdown, value:", dropdownState);
     setDropdownState(!dropdownState); //funker ikke akk nå vet ikke hvorfor må fikses alt bare crasher om du prøver å toggle dropdownen
   };
-  const [user, setUser] = useState({});
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
   return (
-    <div
-      onMouseEnter={toggleDropdown}
-      onMouseLeave={toggleDropdown}
-      className="flex flex-col"
-    >
+    <div onClick={toggleDropdown} className="flex flex-col">
       {dropdownState && <LogOut />}
       <div className="flex flex-row  gap-3 items-center">
         <svg
