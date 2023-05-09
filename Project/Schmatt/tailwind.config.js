@@ -21,7 +21,8 @@ module.exports = {
         "common": "#171717",
         "message-recieved": "#212023",
         "message-sent": "#3A393B",
-        "schmatt-text": "#BFBDBD"
+        "schmatt-text": "#BFBDBD",
+        "forum-background": "#191818",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

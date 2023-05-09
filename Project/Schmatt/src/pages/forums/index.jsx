@@ -4,7 +4,7 @@ import Posts from "./components/Posts";
 import { useState } from "react";
 
 export default function forums() {
-  const [selectedForum, setSelectedForum] = useState(null)
+  const [selectedForum, setSelectedForum] = useState("");
   return (
     <>
       <Navbar />
@@ -14,7 +14,7 @@ export default function forums() {
             <Selectforum selectedForum={selectedForum} setSelectedForum={setSelectedForum} />
           </section>
           <section className="flex flex-row h-full w-full  ">
-            <Posts selectedForum={selectedForum} setSelectedForum={setSelectedForum} />
+            <Posts selectedForum={selectedForum} />
           </section>
         </div>
       </main>
