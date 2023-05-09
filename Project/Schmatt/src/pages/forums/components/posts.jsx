@@ -36,7 +36,7 @@ export default function Posts() {
       </section>
       {createRoomPopup && <FormPopup setCreateRoomPopup={setCreateRoomPopup} />}
       <div>
-        <button onClick={handleCreateRoomClick}>Create Room</button>
+        <button onClick={handleCreateRoomClick}>Create post</button>
       </div>
     </>
   );
