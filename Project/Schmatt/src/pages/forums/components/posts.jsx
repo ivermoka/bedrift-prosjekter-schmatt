@@ -42,7 +42,7 @@ export default function Posts(selectedForum, setSelectedForum) {
           </div>
         </div>
       </section>
-      {createRoomPopup && <FormPopup setCreateRoomPopup={setCreateRoomPopup} />}
+      {createRoomPopup && <FormPopup setCreateRoomPopup={setCreateRoomPopup} selectedForum={selectedForum} />}
       <div>
         <button onClick={handleCreateRoomClick}>Create post</button>
       </div>

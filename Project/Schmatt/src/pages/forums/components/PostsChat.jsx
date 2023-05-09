@@ -31,10 +31,10 @@ const PostsChat = ({selectedForum, refresh}) => {
   return (
     <div>
       {messages.map((message) =>
-            message.room === selectedForum ? (
-              <ForumPost selectedForum={selectedForum} key={message.id} message={message} />
-            ) : null
-          )}
+        message.room === selectedForum ? (
+          <ForumPost selectedForum={selectedForum} key={message.id} message={message} />
+        ) : null
+      )}
     </div>
   )
 }

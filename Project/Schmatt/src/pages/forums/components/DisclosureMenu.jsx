@@ -12,7 +12,9 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
   }`;
   return (
     <div className="w-full px-4 pt-16">
+      {selectedForum && <p>Selected forum: {selectedForum}</p>}
       <div className="mx-auto w-full max-w-md rounded-2xl">
+      
         <Disclosure>
           {({ open }) => (
             <>
@@ -34,20 +36,20 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
                 </a>
               </Disclosure.Panel>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                <a href="/" onClick={() => setSelectedForum("s/CodingNews")}>
+                <a onClick={() => setSelectedForum("s/CodingNews")}>
                   s/CodingNews
                 </a>
               </Disclosure.Panel>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                 <a
-                  href="/"
+                  
                   onClick={() => setSelectedForum("s/WebDevelopment")}
                 >
                   s/WebDevelopment
                 </a>
               </Disclosure.Panel>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                <a href="/" onClick={() => setSelectedForum("s/CodingHelp")}>
+                <a onClick={() => setSelectedForum("s/CodingHelp")}>
                   s/CodingHelp
                 </a>
               </Disclosure.Panel>
@@ -56,7 +58,7 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
         </Disclosure>
         {/* Other forums... */}
       </div>
-      {selectedForum && <p>Selected forum: {selectedForum}</p>}
+      
     </div>
   );
 }

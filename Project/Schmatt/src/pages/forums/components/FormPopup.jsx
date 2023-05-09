@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
 
-const FormPopup = ({setCreateRoomPopup}) => {
+const FormPopup = ({setCreateRoomPopup, selectedForum}) => {
     const [titleInput, setTitleInput] = useState("");
     const [contentInput, setContentInput] = useState("");
 
@@ -22,7 +22,7 @@ const FormPopup = ({setCreateRoomPopup}) => {
             name: displayName,
             uid,
             timestamp: serverTimestamp(),
-            // room: selectedRoom,
+            selectedForum
         });
     }
     function handleCreateRoomPopup() {
