@@ -9,12 +9,21 @@ import {
   addDoc,
   serverTimestamp,
   orderBy,
+  where,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "@/firebase-configSchmatt";
 import handler from "@/pages/api/helloSchmatt";
 import { ref } from "firebase/storage";
 
-const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh, scroll }) => {
+const Rooms = ({
+  selectedRoom,
+  setSelectedRoom,
+  refresh,
+  setRefresh,
+  scroll,
+  setRoomPopupIsOpen,
+}) => {
   const [input, setInput] = useState("");
   const {
     register,
@@ -29,17 +38,31 @@ const Rooms = ({ selectedRoom, setSelectedRoom, refresh, setRefresh, scroll }) =
   const [nameOfRoom, setNameOfRoom] = useState("");
 
   const onSubmit = async (data, e) => {
+    e.preventDefault();
+
+    // Sjekker om rom navnet allerede er der
+    const roomQuery = query(
+      collection(db, "rooms"),
+      where("displayName", "==", data.roomName)
+    );
+    const roomQuerySnapshot = await getDocs(roomQuery);
+    if (!roomQuerySnapshot.empty) {
+      setRoomPopupIsOpen(true);
+      return;
+    }
+
+    // Create the new room
     if (input === "") {
       alert("Please enter a valid message");
       return;
     }
     console.log("Room created! Name:", data.roomName);
 
-    e.preventDefault();
     await addDoc(collection(db, "rooms"), {
       displayName: data.roomName,
       timestamp: serverTimestamp(),
     });
+
     setInput("");
   };
 

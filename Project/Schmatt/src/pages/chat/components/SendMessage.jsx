@@ -9,11 +9,10 @@ const style = {
   button: `p-3 bg-button-active rounded-full opacity-75`,
 };
 
-const SendMessage = ({ scroll, selectedRoom, refresh, setRefresh }) => {
+const SendMessage = ({ scroll, selectedRoom, refresh, setRefresh, ref }) => {
   const [input, setInput] = useState("");
 
   const sendMessage = async (e) => {
-    setRefresh(!refresh);
     e.preventDefault();
     if (input === "") {
       alert("Please enter a valid message");
@@ -27,7 +26,7 @@ const SendMessage = ({ scroll, selectedRoom, refresh, setRefresh }) => {
       timestamp: serverTimestamp(),
       room: selectedRoom,
     });
-    scroll.current.scrollIntoView({ behavior: "smooth" });
+    // ref.current.scrollIntoView({ behavior: "smooth" }); //funker ikke akk nå
     setInput("");
   };
 

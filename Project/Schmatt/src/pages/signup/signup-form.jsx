@@ -11,6 +11,7 @@ import { useLogin } from "./../login/components/github-login";
 import Button from "./../login/components/submit-button";
 import { addDoc, collection } from "firebase/firestore";
 import { useRouter } from "next/router";
+import AccountCreated from "../../dialog/forms-popup";
 
 export default function SignupForm() {
   const {
@@ -26,35 +27,39 @@ export default function SignupForm() {
   });
   const router = useRouter();
 
-  const [passwordsMatch, setPasswordsMatch] = useState(false);
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [accountCreatedPopup, setAccountCreatedPopup] = useState(false);
+
+  const [usernameExists, setUsernameExists] = useState(false);
+
   const onSubmit = async (data) => {
     if (data.password === data.confirmPassword) {
-      setPasswordsMatch(false);
-    }
-    if (data.password !== data.confirmPassword) {
-      return;
-    }
-    try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
+      setPasswordsMatch(true);
+      try {
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
 
-      await updateProfile(user, {
-        displayName: data.username,
-      });
-      await addDoc(collection(db, "usernames"), {
-        displayName: data.username,
-      });
-      console.log("Account created successfully: ", user.displayName);
-      router.push("/chat");
-    } catch (error) {
-      console.log("Failed creating account: ", error);
-      setErrorMessage(error.message);
+        await updateProfile(user, {
+          displayName: data.username,
+        });
+        await addDoc(collection(db, "usernames"), {
+          displayName: data.username,
+        });
+        console.log("Account created successfully: ", user.displayName);
+        setAccountCreatedPopup(true);
+        router.push("/chat");
+      } catch (error) {
+        console.log("Failed creating account: ", error);
+        setErrorMessage(error.message);
+      }
+    } else {
+      setPasswordsMatch(false);
     }
   };
 
@@ -69,6 +74,12 @@ export default function SignupForm() {
   return (
     // Wrapping div
     <div className="h-4/6 w-3/5 bg-white rounded-3xl flex flex-col overflow-hidden">
+      <AccountCreated
+        accountCreatedPopup={accountCreatedPopup}
+        setAccountCreatedPopup={setAccountCreatedPopup}
+        title="Account created succesfully!"
+        description="You will be automatically logged in shortly."
+      />
       {/*Wrapping div inside to have content not take up the whole div*/}
       <div className="h-5/6 flex">
         {/*Left side with image*/}

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useLogin } from "./components/github-login";
 import { useRouter } from "next/router";
 import Button from "./components/submit-button";
+import Popup from "./../../dialog/forms-popup";
 
 export default function LoginForm() {
   const {
@@ -22,11 +23,14 @@ export default function LoginForm() {
     },
   });
 
+  const [accountCreatedPopup, setAccountCreatedPopup] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
   const onSubmit = async (data) => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+      setAccountCreatedPopup(true);
       console.log("Logged in succesfully");
       router.push("/chat");
     } catch (error) {
@@ -46,6 +50,12 @@ export default function LoginForm() {
   return (
     // Wrapping div
     <div className="h-3/6 w-3/5 bg-white rounded-3xl flex flex-col overflow-hidden">
+      <Popup
+        accountCreatedPopup={accountCreatedPopup}
+        setAccountCreatedPopup={setAccountCreatedPopup}
+        title="Logged in successfully!"
+        description="You will be transported to chat shortly."
+      />
       {/*Wrapping div inside to have content not take up the whole div*/}
       <div className="h-96 flex">
         {/*Left side with image*/}
