@@ -4,14 +4,14 @@ import Profile from "./components/profile";
 export default function Navbar() {
   return (
     <>
-      <nav className=" flex flex-row w-screen h-14 z-20 bg-rich-black absolute opacity-80  backdrop-blur-sm ">
+      <nav className=" flex flex-row w-screen h-14 z-20 bg-rich-black absolute  backdrop-blur-sm ">
         <div id="left" className=" flex w-3/5 ">
           <div className="w-[100px]">
             {" "}
             <a href="/">
               <img
-                className=" mt-2 h-auto w-2/3 ml-20 "
-                src={"temp-logo-schmatt.png"}
+                className=" h-auto w-1/2 ml-20 "
+                src={"schmatt_logo.png"}
               />
             </a>{" "}
           </div>
