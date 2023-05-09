@@ -11,7 +11,7 @@ export default function forums() {
           <section id="forumview" className="flex flex-col h-full ">
             <Selectforum />
           </section>
-          <section className="flex flex-col  ">
+          <section className="flex flex-row h-full w-full  ">
             <Posts />
           </section>
         </div>
