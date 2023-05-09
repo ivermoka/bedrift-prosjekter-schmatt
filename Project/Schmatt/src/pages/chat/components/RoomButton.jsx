@@ -1,11 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-const RoomButton = ({ setSelectedRoom, room, refresh, setRefresh, scroll }) => {
+const RoomButton = ({ setSelectedRoom, room, refresh, setRefresh, ref }) => {
   function handleRoomClick() {
     setSelectedRoom(room);
     setRefresh(!refresh);
-    scroll.current.scrollIntoView({ behavior: "smooth" });
   }
 
   const [button, setButton] = useState(true);

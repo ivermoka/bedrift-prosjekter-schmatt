@@ -10,8 +10,10 @@ import Navbar from "../navbar/navbar";
 import UsernameList from "./components/UsernameList";
 import { ref } from "firebase/storage";
 import { useRef } from "react";
+import RoomAlreadyExistsPopup from "./../../dialog/room-popup";
 
 const index = () => {
+  const [roomPopupIsOpen, setRoomPopupIsOpen] = useState(false); //Room already exists popup state
   const [messages, setMessages] = useState([]);
   const scroll = useRef();
 
@@ -33,6 +35,10 @@ const index = () => {
 
   return (
     <>
+      <RoomAlreadyExistsPopup
+        roomPopupIsOpen={roomPopupIsOpen}
+        setRoomPopupIsOpen={setRoomPopupIsOpen}
+      />
       <div className="overflow-hidden max-h-screen">
         <Navbar />
         <div className="mt-14 w-screen h-screen bg-rich-black flex flex-row">
@@ -42,6 +48,7 @@ const index = () => {
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
             scroll={scroll}
+            setRoomPopupIsOpen={setRoomPopupIsOpen}
           />
           <Chat
             selectedRoom={selectedRoom}
