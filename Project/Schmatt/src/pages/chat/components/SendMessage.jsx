@@ -29,6 +29,12 @@ const SendMessage = ({
       return;
     }
     const { uid, displayName } = auth.currentUser;
+    // check if any character in the input has Unicode value greater than 255
+    const hasEmoji = input.split("").some((char) => char.charCodeAt(0) > 255);
+    if (hasEmoji) {
+      alert("Please enter a valid message without emojis");
+      return;
+    }
     await addDoc(collection(db, "messages"), {
       text: input,
       name: displayName,
