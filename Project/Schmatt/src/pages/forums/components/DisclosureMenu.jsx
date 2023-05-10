@@ -2,10 +2,11 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 
-export default function Discmenu({ selectedForum, setSelectedForum }) {
+export default function Discmenu({ selectedForum, setSelectedForum, refresh, setRefresh }) {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
+    setRefresh(!refresh);
   };
   const panelClasses = `px-4 pt-4 pb-2 text-sm text-gray-500 hover:text-white ${
     isPanelOpen ? "bg-red-400" : ""
@@ -30,6 +31,7 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
                 <a
                   onClick={() => {
                     setSelectedForum("s/CodingTips"), { togglePanel };
+
                   }}
                 >
                   s/CodingTips
@@ -42,7 +44,6 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
               </Disclosure.Panel>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                 <a
-                  
                   onClick={() => setSelectedForum("s/WebDevelopment")}
                 >
                   s/WebDevelopment

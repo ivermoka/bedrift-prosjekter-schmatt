@@ -12,9 +12,8 @@ const style = {
   button: `p-3 bg-button-active rounded-full opacity-75`,
 };
 
-export default function Posts(selectedForum, setSelectedForum) {
+export default function Posts(selectedForum, setSelectedForum, refresh, setRefresh) {
   const [createRoomPopup, setCreateRoomPopup] = useState(false);
-  const [refresh, setRefresh] = useState(false);
 
   const handleCreateRoomClick = () => {
     setCreateRoomPopup(true);
