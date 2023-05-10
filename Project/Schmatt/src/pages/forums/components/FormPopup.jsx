@@ -6,7 +6,8 @@ import { auth, db } from "../../../firebase-config";
 const FormPopup = ({setCreateRoomPopup, selectedForum}) => {
     const [titleInput, setTitleInput] = useState("");
     const [contentInput, setContentInput] = useState("");
-    const forum = selectedForum.selectedForum
+    const forum = selectedForum.selectedForum;
+    const score = 0;
 
     const sendMessage = async (e) => {
         console.log("sent", titleInput, contentInput)
@@ -28,12 +29,14 @@ const FormPopup = ({setCreateRoomPopup, selectedForum}) => {
             name: displayName,
             uid,
             timestamp: serverTimestamp(),
-            forum
+            forum,
+            score
         });
     }
     function handleCreateRoomPopup() {
         setCreateRoomPopup(false)
     }
+    
   return (
     <div className='absolute left-0 right-0 top-0 bottom-0 m-auto bg-slate-500 w-2/3 h-3/4 rounded-md flex '>
         <form onSubmit={sendMessage} className=' text-black flex flex-col items-center h-full w-11/12 pl-10 justify-around'>
@@ -42,14 +45,15 @@ const FormPopup = ({setCreateRoomPopup, selectedForum}) => {
                 onChange={(e) => setTitleInput(e.target.value)}
                 type="text"
                 placeholder="Your title"
-                className=' w-1/2 rounded-lg'
+                className=' w-1/3 rounded-lg'
             />
+
             <input
                 value={contentInput}
                 onChange={(e) => setContentInput(e.target.value)}
                 type="text"
                 placeholder="Your content"
-                className=' w-3/4 h-2/3 rounded-md placeholder:float-left text-black text-start'
+                className=' w-3/4 h-1/3 rounded-md placeholder:float-left text-black text-start'
             />
             <button type="submit" className='bg-common rounded-lg p-2 w-full h-20'>
                 Create post
