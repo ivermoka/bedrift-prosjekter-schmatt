@@ -12,14 +12,13 @@ const style = {
   button: `p-3 bg-button-active rounded-full opacity-75`,
 };
 
-export default function Posts(selectedForum, setSelectedForum) {
+export default function Posts(selectedForum, setSelectedForum, refresh, setRefresh) {
   const [createRoomPopup, setCreateRoomPopup] = useState(false);
-  const [refresh, setRefresh] = useState(false);
 
   const handleCreateRoomClick = () => {
     setCreateRoomPopup(true);
   };
-  
+
 
   return (
     <>
@@ -27,12 +26,12 @@ export default function Posts(selectedForum, setSelectedForum) {
         <div className=" h-20 w-full flex justify-center items-center">
           <div className="w-80 h-4/6 flex justify-center flex-col items-center border-b-2 border-border-color">
             <span className=" text-text-color">Posts</span>
-            
-            
+
+
           </div>
         </div>
         <div className="w-full h-full overflow-y-auto">
-          <PostsChat selectedForum={selectedForum} refresh={refresh}  />
+          <PostsChat selectedForum={selectedForum} refresh={refresh} />
         </div>
       </section>
       <section className="h-full w-4/12">
@@ -42,7 +41,7 @@ export default function Posts(selectedForum, setSelectedForum) {
           </div>
         </div>
       </section>
-      {createRoomPopup && <FormPopup setCreateRoomPopup={setCreateRoomPopup} />}
+      {createRoomPopup && <FormPopup setCreateRoomPopup={setCreateRoomPopup} selectedForum={selectedForum} />}
       <div>
         <button onClick={handleCreateRoomClick}>Create post</button>
       </div>

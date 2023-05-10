@@ -3,12 +3,18 @@ import { useState } from 'react';
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
 
-const FormPopup = ({setCreateRoomPopup}) => {
+const FormPopup = ({setCreateRoomPopup, selectedForum}) => {
     const [titleInput, setTitleInput] = useState("");
     const [contentInput, setContentInput] = useState("");
+    const forum = selectedForum.selectedForum
 
     const sendMessage = async (e) => {
-        console.log("sent", titleInput, contentInput, )
+        console.log("sent", titleInput, contentInput)
+
+        if (forum === "") {
+            alert("Please select a forum")
+            return
+        }
         
         e.preventDefault();
         if (titleInput === "" || contentInput === "") {
@@ -22,7 +28,7 @@ const FormPopup = ({setCreateRoomPopup}) => {
             name: displayName,
             uid,
             timestamp: serverTimestamp(),
-            // room: selectedRoom,
+            forum
         });
     }
     function handleCreateRoomPopup() {
