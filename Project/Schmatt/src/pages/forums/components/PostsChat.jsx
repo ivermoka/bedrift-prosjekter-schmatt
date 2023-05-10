@@ -12,7 +12,7 @@ import ForumPost from "./ForumPost";
 
 const PostsChat = ({selectedForum, refresh}) => {
   const [messages, setMessages] = useState([]);
-  const forum = selectedForum.selectedForum
+  const forum = selectedForum
   
   useEffect(() => {
     console.log(forum);

@@ -1,67 +1,34 @@
-import { useState, useEffect } from "react";
-import { auth, storage } from "./../../firebase-config";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { useAuth, upload } from "../../firebase-config";
 
-export default function ProfilePage() {
-  const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+export default function Profile() {
+  const currentUser = useAuth();
+  const [photo, setPhoto] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [photoURL, setPhotoURL] = useState("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png");
 
-    return () => unsubscribe();
-  }, []);
-
-  useEffect(() => {
-    if (user.photoURL) {
-      const img = new Image();
-      img.onload = () => {
-        setUser((prevUser) => ({
-          ...prevUser,
-          photoURL: url,
-        }));
-      };
-      img.src = user.photoURL;
+  function handleChange(e) {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0])
     }
-  }, [user.photoURL]);
+  }
 
-  const handleImageUpload = (e) => {
-    console.log(user.photoURL);
-    const file = e.target.files[0];
-    const storageRef = ref(storage, `users/${user.uid}/profilePicture`);
-    uploadBytes(storageRef, file).then(() => {
-      getDownloadURL(storageRef).then((url) => {
-        setUser((prevUser) => ({
-          ...prevUser,
-          photoURL: url,
-        }));
-      });
-    });
-  };
+  function handleClick() {
+    upload(photo, currentUser, setLoading);
+  }
+
+  useEffect(() => {
+    if (currentUser?.photoURL) {
+      setPhotoURL(currentUser.photoURL);
+    }
+  }, [currentUser])
 
   return (
-    <div className="w-screen h-screen bg-rich-black flex justify-center items-center">
-      <div className="bg-button-active w-1/3 h-5/6 flex flex-col p-10">
-        {/*Image and username*/}
-        <div className="h-40 w-full flex items-end">
-          <div className="self-center w-1/2 aspect-square flex flex-col">
-            {user.photoURL ? (
-              <img
-                className="aspect-square w-full self-center"
-                src={user.photoURL}
-              />
-            ) : (
-              <label className="border border-border-color bg-rich-black rounded-md">
-                <input type="file" onChange={handleImageUpload} hidden />
-                Change picture
-              </label>
-            )}
-          </div>
-          <h1 className="mb-6 text-7xl text-text-color">{user.displayName}</h1>
-        </div>
-      </div>
+    <div className="fields">
+      <input type="file" onChange={handleChange} />
+      <button disabled={loading || !photo} onClick={handleClick}>Upload</button>
+      <img src={photoURL} alt="Avatar" className="avatar" />
     </div>
   );
 }

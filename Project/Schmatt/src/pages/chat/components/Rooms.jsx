@@ -57,7 +57,10 @@ const Rooms = ({
       return;
     }
     console.log("Room created! Name:", data.roomName);
-
+    if (input === "General") {
+      alert("Cannot make new general room.");
+      return;
+    }
     await addDoc(collection(db, "rooms"), {
       displayName: data.roomName,
       timestamp: serverTimestamp(),
@@ -83,11 +86,11 @@ const Rooms = ({
 
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
-      <p>Selected room: {selectedRoom}</p>
+      <p className="p-2 bg-common border-t border-border-color">Current room: {selectedRoom}</p>
       {/* room/new person tab */}
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className=" bg-common py-4 px-2 rounded-lg border-border-color border-[1px]"
+        className=" bg-common py-4 px-2 rounded-b-lg mb-1 border-border-color border-[1px]"
       >
         <input
           className="bg-common"
@@ -108,7 +111,14 @@ const Rooms = ({
           Add
         </button>
       </form> */}
-
+      <RoomButton 
+        room="General"
+        selectedRoom={selectedRoom}
+        setSelectedRoom={setSelectedRoom}
+        refresh={refresh}
+        setRefresh={setRefresh}
+        scroll={scroll} 
+      />
       {rooms.map((room) => (
         <RoomButton
           room={room.displayName}

@@ -31,7 +31,7 @@ export default function Posts(selectedForum, setSelectedForum, refresh, setRefre
           </div>
         </div>
         <div className="w-full h-full overflow-y-auto">
-          <PostsChat selectedForum={selectedForum} refresh={refresh} />
+          <PostsChat selectedForum={selectedForum.selectedForum} refresh={refresh} />
         </div>
       </section>
       <section className="h-full w-4/12">

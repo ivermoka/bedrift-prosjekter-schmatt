@@ -16,7 +16,7 @@ module.exports = {
         "iris": "#3F4ADE",
         "state-blue": "#6564DB",
         "text-color": "#BFBDBD",
-        "border-color": "#707070",
+        "border-color": "#333232",
         "button-active": "#212023",
         "common": "#171717",
         "message-recieved": "#212023",
