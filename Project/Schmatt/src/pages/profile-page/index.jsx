@@ -1,34 +1,37 @@
-import { useEffect, useState } from "react";
-import { useAuth, upload } from "../../firebase-config";
-
+import React, { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
+import { auth } from "./../../firebase-config";
+import getUser from "./../../user";
 
 export default function Profile() {
-  const currentUser = useAuth();
-  const [photo, setPhoto] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [photoURL, setPhotoURL] = useState("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png");
-
-  function handleChange(e) {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0])
-    }
-  }
-
-  function handleClick() {
-    upload(photo, currentUser, setLoading);
-  }
-
-  useEffect(() => {
-    if (currentUser?.photoURL) {
-      setPhotoURL(currentUser.photoURL);
-    }
-  }, [currentUser])
+  const user = getUser();
 
   return (
-    <div className="fields">
-      <input type="file" onChange={handleChange} />
-      <button disabled={loading || !photo} onClick={handleClick}>Upload</button>
-      <img src={photoURL} alt="Avatar" className="avatar" />
+    <div className="bg-rich-black h-screen flex justify-center items-center">
+      <div className="bg-delif-blue/[0.7] w-1/3 h-5/6 flex flex-col items-center p-12">
+        <MyDropzone />
+      </div>
+    </div>
+  );
+}
+
+function MyDropzone() {
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  return (
+    <div
+      {...getRootProps()}
+      className="bg-white/[0.7] opacity-90 w-42 h-20 border-2 border-black border-dashed flex items-center text-center px-8"
+    >
+      <input {...getInputProps()} />
+      {isDragActive ? (
+        <p>Drop the files here ...</p>
+      ) : (
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      )}
     </div>
   );
 }
