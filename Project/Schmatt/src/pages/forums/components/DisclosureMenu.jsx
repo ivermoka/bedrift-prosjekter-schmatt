@@ -1,6 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
+import Codingnews from "./Coding-schmatts/Codingnews-shmub";
 
 export default function Discmenu({ selectedForum, setSelectedForum }) {
   return (
@@ -18,7 +19,7 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
                   } h-5 w-5 text-[#FFF8F8]`}
                 />
               </Disclosure.Button>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 active:ring-1 ring-slate-600 active:rounded-xl active:text-text-color hover:text-text-color cursor-pointer select-none">
                 <a
                   onClick={() => {
                     setSelectedForum("s/CodingTips");
@@ -27,17 +28,17 @@ export default function Discmenu({ selectedForum, setSelectedForum }) {
                   s/CodingTips
                 </a>
               </Disclosure.Panel>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 active:bg-violet-500">
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 active:ring-1 ring-slate-600 active:rounded-xl active:text-text-color hover:text-text-color cursor-pointer select-none">
                 <a onClick={() => setSelectedForum("s/CodingNews")}>
                   s/CodingNews
                 </a>
               </Disclosure.Panel>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 active:ring-1 ring-slate-600 active:rounded-xl active:text-text-color hover:text-text-color cursor-pointer select-none">
                 <a onClick={() => setSelectedForum("s/WebDevelopment")}>
                   s/WebDevelopment
                 </a>
               </Disclosure.Panel>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 active:ring-1 ring-slate-600 active:rounded-xl active:text-text-color hover:text-text-color cursor-pointer select-none">
                 <a onClick={() => setSelectedForum("s/CodingHelp")}>
                   s/CodingHelp
                 </a>
