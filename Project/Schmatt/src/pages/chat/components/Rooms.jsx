@@ -96,7 +96,9 @@ const Rooms = ({
 
   return (
     <div className=" w-1/5 h-full border-border-color border-r-2 ">
-      <p className="p-2 bg-common border-t border-border-color">Current room: {selectedRoom}</p>
+      <p className="p-2 bg-common border-t border-border-color">
+        Current room: {selectedRoom}
+      </p>
       {/* room/new person tab */}
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -121,13 +123,13 @@ const Rooms = ({
           Add
         </button>
       </form> */}
-      <RoomButton 
+      <RoomButton
         room="General"
         selectedRoom={selectedRoom}
         setSelectedRoom={setSelectedRoom}
         refresh={refresh}
         setRefresh={setRefresh}
-        scroll={scroll} 
+        scrollRef={scrollRef}
       />
       {rooms.map((room) => (
         <RoomButton
