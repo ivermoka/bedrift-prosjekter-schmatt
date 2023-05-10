@@ -2,20 +2,11 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 
-export default function Discmenu({ selectedForum, setSelectedForum, refresh, setRefresh }) {
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
-  const togglePanel = () => {
-    setIsPanelOpen(!isPanelOpen);
-    setRefresh(!refresh);
-  };
-  const panelClasses = `px-4 pt-4 pb-2 text-sm text-gray-500 hover:text-white ${
-    isPanelOpen ? "bg-red-400" : ""
-  }`;
+export default function Discmenu({ selectedForum, setSelectedForum }) {
   return (
     <div className="w-full px-4 pt-16">
       {selectedForum && <p>Selected forum: {selectedForum}</p>}
       <div className="mx-auto w-full max-w-md rounded-2xl">
-      
         <Disclosure>
           {({ open }) => (
             <>
@@ -27,25 +18,22 @@ export default function Discmenu({ selectedForum, setSelectedForum, refresh, set
                   } h-5 w-5 text-[#FFF8F8]`}
                 />
               </Disclosure.Button>
-              <Disclosure.Panel className={panelClasses}>
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
                 <a
                   onClick={() => {
-                    setSelectedForum("s/CodingTips"), { togglePanel };
-
+                    setSelectedForum("s/CodingTips");
                   }}
                 >
                   s/CodingTips
                 </a>
               </Disclosure.Panel>
-              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
+              <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 active:bg-violet-500">
                 <a onClick={() => setSelectedForum("s/CodingNews")}>
                   s/CodingNews
                 </a>
               </Disclosure.Panel>
               <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500">
-                <a
-                  onClick={() => setSelectedForum("s/WebDevelopment")}
-                >
+                <a onClick={() => setSelectedForum("s/WebDevelopment")}>
                   s/WebDevelopment
                 </a>
               </Disclosure.Panel>
@@ -59,7 +47,6 @@ export default function Discmenu({ selectedForum, setSelectedForum, refresh, set
         </Disclosure>
         {/* Other forums... */}
       </div>
-      
     </div>
   );
 }
