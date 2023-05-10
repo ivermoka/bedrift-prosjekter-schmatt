@@ -9,10 +9,20 @@ const style = {
   button: `p-3 bg-button-active rounded-full opacity-75`,
 };
 
-const SendMessage = ({ scroll, selectedRoom, refresh, setRefresh, ref }) => {
+const SendMessage = ({
+  scroll,
+  selectedRoom,
+  refresh,
+  setRefresh,
+  scrollRef,
+}) => {
   const [input, setInput] = useState("");
 
   const sendMessage = async (e) => {
+    scrollRef.current.scroll({
+      top: scrollRef.current.scrollHeight,
+      behavior: "smooth",
+    });
     e.preventDefault();
     if (input === "") {
       alert("Please enter a valid message");
@@ -38,6 +48,7 @@ const SendMessage = ({ scroll, selectedRoom, refresh, setRefresh, ref }) => {
         className={style.input}
         type="text"
         placeholder="Your text..."
+        maxLength="200"
       />
       <button className={style.button} type="submit">
         <svg

@@ -13,11 +13,9 @@ import {
 } from "firebase/firestore";
 import { ref } from "firebase/storage";
 
-const Chat = ({ selectedRoom, refresh, setRefresh }) => {
+const Chat = ({ selectedRoom, refresh, setRefresh, scrollRef }) => {
   const [messages, setMessages] = useState([]);
   const [numMessages, setNumMessages] = useState(0);
-
-  const chatRef = useRef(null);
 
   useEffect(() => {
     const q = query(
@@ -28,7 +26,7 @@ const Chat = ({ selectedRoom, refresh, setRefresh }) => {
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setRefresh(!refresh);
-      chatRef.current.scrollIntoView({ behavior: "smooth" });
+      // chatRef.current.scrollIntoView({ behavior: "smooth" });
       let messages = [];
       querySnapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
@@ -41,11 +39,22 @@ const Chat = ({ selectedRoom, refresh, setRefresh }) => {
 
   return (
     <>
-      <div
-        className="overflow-scroll w-[65%] border-r-[1px] border-border-color min-h-full flex flex-col pb-12 pt-10"
-        ref={chatRef}
+      {/* <button
+        onClick={() => {
+          const chatDiv = document.querySelector("#chat-container");
+          chatDiv.scroll({
+            top: chatDiv.scrollHeight,
+            behavior: "smooth",
+          });
+        }}
       >
-        <div className="pb-20">
+        Scroll to bottom
+      </button> */}
+      <div
+        ref={scrollRef}
+        className="overflow-scroll w-[65%] border-r-[1px] border-border-color min-h-full flex flex-col pb-12 pt-10"
+      >
+        <div className="pb-20 mb-20">
           {messages.map((message) =>
             message.room === selectedRoom ? (
               <Message key={message.id} message={message} />
@@ -57,8 +66,8 @@ const Chat = ({ selectedRoom, refresh, setRefresh }) => {
           selectedRoom={selectedRoom}
           refresh={refresh}
           setRefresh={setRefresh}
+          scrollRef={scrollRef}
         />
-        <span ref={chatRef}></span>
       </div>
     </>
   );

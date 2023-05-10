@@ -100,6 +100,10 @@ export default function SignupForm() {
                 type="text"
                 {...register("username", {
                   required: "*Please enter a username",
+                  maxLength: {
+                    value: 12,
+                    message: "*Username must be shorter than 12 characetrs.",
+                  },
                 })}
                 placeholder="Username"
                 className="rounded-2xl border-border-color border w-full h-1/2 px-2"

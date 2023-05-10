@@ -42,7 +42,7 @@ const Message = ({ message }) => {
             <span className={style.name}>{message.name}</span> {timestampString}
           </span>
           <div className={`${style.message} ${messageClass}`}>
-            <p>{message.text}</p>
+            <p className="break-all">{message.text}</p>
           </div>
         </div>
       </div>
