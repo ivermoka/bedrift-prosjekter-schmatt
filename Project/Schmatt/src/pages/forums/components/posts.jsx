@@ -18,7 +18,7 @@ export default function Posts(selectedForum, setSelectedForum, refresh, setRefre
   const handleCreateRoomClick = () => {
     setCreateRoomPopup(true);
   };
-  
+
 
   return (
     <>
@@ -26,12 +26,12 @@ export default function Posts(selectedForum, setSelectedForum, refresh, setRefre
         <div className=" h-20 w-full flex justify-center items-center">
           <div className="w-80 h-4/6 flex justify-center flex-col items-center border-b-2 border-border-color">
             <span className=" text-text-color">Posts</span>
-            
-            
+
+
           </div>
         </div>
         <div className="w-full h-full overflow-y-auto">
-          <PostsChat selectedForum={selectedForum} refresh={refresh}  />
+          <PostsChat selectedForum={selectedForum} refresh={refresh} />
         </div>
       </section>
       <section className="h-full w-4/12">
