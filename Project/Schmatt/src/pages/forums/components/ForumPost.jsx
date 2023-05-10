@@ -23,7 +23,7 @@ const ForumPost = ({key, message, selectedForum, title, content}) => {
         <div className=" px-2 w-full h-auto bg-forum-background border-border-color border rounded-md flex flex-col gap-4">
             <div className='flex justify-between h-10 w-full'>
                 <p>{selectedForum}</p>
-                <p>Posted by {user.displayName}</p>
+                <p>Posted by {message.name}</p>
             </div>
             <div className='flex flex-col items-center gap-10 px-24 pb-10'>
                 {/* <p >{message.name}</p> */}
