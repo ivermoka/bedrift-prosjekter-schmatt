@@ -1,7 +1,5 @@
 import React from "react";
 import Rooms from "./components/Rooms";
-import SendMessage from "./components/sendMessage";
-import Message from "./components/Message";
 import Chat from "./components/Chat";
 import { useState, useEffect } from "react";
 import { db } from "../../firebase-config";
@@ -15,7 +13,7 @@ import RoomAlreadyExistsPopup from "./../../dialog/room-popup";
 const index = () => {
   const [roomPopupIsOpen, setRoomPopupIsOpen] = useState(false); //Room already exists popup state
   const [messages, setMessages] = useState([]);
-  const scroll = useRef();
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("timestamp"));
@@ -47,14 +45,14 @@ const index = () => {
             setRefresh={setRefresh}
             selectedRoom={selectedRoom}
             setSelectedRoom={setSelectedRoom}
-            scroll={scroll}
+            scrollRef={scrollRef}
             setRoomPopupIsOpen={setRoomPopupIsOpen}
           />
           <Chat
             selectedRoom={selectedRoom}
             refresh={refresh}
             setRefresh={setRefresh}
-            scroll={scroll}
+            scrollRef={scrollRef}
           />
           <UsernameList />
         </div>

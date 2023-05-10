@@ -21,7 +21,7 @@ const Rooms = ({
   setSelectedRoom,
   refresh,
   setRefresh,
-  scroll,
+  scrollRef,
   setRoomPopupIsOpen,
 }) => {
   const [input, setInput] = useState("");
@@ -46,7 +46,17 @@ const Rooms = ({
       where("displayName", "==", data.roomName)
     );
     const roomQuerySnapshot = await getDocs(roomQuery);
-    if (!roomQuerySnapshot.empty) {
+    const trimmedRoomName = data.roomName.trim();
+    const roomExists =
+      !roomQuerySnapshot.empty &&
+      roomQuerySnapshot.docs.some(
+        (doc) => doc.data().displayName === trimmedRoomName
+      );
+    if (
+      roomExists ||
+      trimmedRoomName.toLowerCase() === "general" ||
+      trimmedRoomName.length === 0
+    ) {
       setRoomPopupIsOpen(true);
       return;
     }
@@ -126,7 +136,7 @@ const Rooms = ({
           setSelectedRoom={setSelectedRoom}
           refresh={refresh}
           setRefresh={setRefresh}
-          scroll={scroll}
+          scrollRef={scrollRef}
         />
       ))}
     </div>
