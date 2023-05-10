@@ -2,16 +2,21 @@ import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { auth } from "./../../firebase-config";
 import getUser from "./../../user";
+import Navbar from "../navbar/navbar";
 
 export default function Profile() {
   const user = getUser();
 
   return (
-    <div className="bg-rich-black h-screen flex justify-center items-center">
-      <div className="bg-delif-blue/[0.7] w-1/3 h-5/6 flex flex-col items-center p-12">
-        <MyDropzone />
+    <>
+      <Navbar />
+      <div className="bg-rich-black h-screen flex justify-center items-center">
+        <div className="w-2/3 h-1/2">
+
+        </div>
       </div>
-    </div>
+    </>
+    
   );
 }
 
