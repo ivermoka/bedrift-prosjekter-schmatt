@@ -23,10 +23,25 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+.parent {
+  /* background: linear-gradient(65deg, rgb(0, 41, 169), rgb(68, 33, 61)) */
+
+
+
+
+
+  background: rgb(49, 52, 68);
+
+  background: radial-gradient(circle, rgba(49, 52, 68, 1) 0%, rgba(23, 23, 23, 1) 100%);
+
+
+
+
+
+
 }
