@@ -17,7 +17,7 @@ export default function profile() {
           <img
             src={user.photoURL}
             alt="profile pic"
-            className="w-full h-full"
+            className="w-full h-full rounded-full max-w-[40px]"
           />
         </div>
         <h1 className="text-[#707070]">{user.displayName}</h1>
