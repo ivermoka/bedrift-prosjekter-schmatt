@@ -34,9 +34,6 @@ export default function Posts(selectedForum, setSelectedForum, refresh, setRefre
             <div>
               <button onClick={handleCreateRoomClick}>Create post</button>
             </div>
-            
-
-
           </div>
         </div>
         <div className="w-full h-full overflow-y-auto">
@@ -46,7 +43,7 @@ export default function Posts(selectedForum, setSelectedForum, refresh, setRefre
       </section>
       {info && <InfoSvgOpen setInfo={setInfo} info={info} />}
       {!info && <InfoSvgClosed setInfo={setInfo} info={info} />}
-      {info && <InfoSection />}
+      {info && <InfoSection selectedForum={selectedForum} />}
       
       
     </>

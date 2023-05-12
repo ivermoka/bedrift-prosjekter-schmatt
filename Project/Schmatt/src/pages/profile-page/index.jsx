@@ -22,7 +22,7 @@ export default function Profile() {
           >
             <div className="bg-white w-96 h-96 mt-28">
               <img
-                className="h-full w-full"
+                className="h-full w-full rounded-full"
                 src={user.photoURL}
                 alt="profile-picture"
               />
