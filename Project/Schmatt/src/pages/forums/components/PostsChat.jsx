@@ -19,7 +19,7 @@ const PostsChat = ({selectedForum, refresh}) => {
     const q = query(
       collection(db, "forum-posts"),
       where("forum", "==", forum),
-      orderBy("timestamp")
+      orderBy("score")
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let messages = [];
@@ -37,11 +37,11 @@ const PostsChat = ({selectedForum, refresh}) => {
   console.log(forum)
 
   return (
-    <div>
+    <div className="flex gap-6 flex-col-reverse">
       {messages.map((message) =>
         message.forum === forum ? (
-          <ForumPost selectedForum={selectedForum} key={message.id} message={message} />
-        ) : <p>hello</p>
+          <ForumPost title={message.title} content={message.textContent} selectedForum={selectedForum} key={message.id} message={message} />
+        ) : {}
       )}
     </div>
   )

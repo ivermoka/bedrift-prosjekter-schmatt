@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "cool-grey": "#707070",
         "rich-black": "#0F151A",
         "delif-blue": "#1C3373",
         iris: "#3F4ADE",
