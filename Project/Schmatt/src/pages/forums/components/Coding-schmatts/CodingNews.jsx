@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // useState(Codingnews)
-export default function Codingnews() {
+export default function CodingNews() {
   <div className="flex flex-col gap-4 w-full h-full text-gray-50">
     <h1>This Shmub forum is for the latest news in the programmingworld.</h1>
     <h1 className="">Rules for the shmub:</h1>- Be respectful and civil: Do not
