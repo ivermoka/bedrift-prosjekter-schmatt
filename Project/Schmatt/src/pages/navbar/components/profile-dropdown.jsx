@@ -9,7 +9,6 @@ export default function LogOut() {
   return (
     <div className="absolute mt-[53px] flex flex-col w-full -ml-4 rounded-md bg-common backdrop-blur-md opacity-95">
       <Item text="Profile" link={"./../profile-page"} />
-      <Item text="Settings" />
       <Item text="Sign Out" logout={logout} link={"./../"} />
     </div>
   );

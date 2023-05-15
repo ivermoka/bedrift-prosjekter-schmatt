@@ -1,5 +1,6 @@
 import { useRef } from "react";
 
+
 const SearchBar = () => {
   const clickPoint = useRef();
   const handleFocus = () => {
@@ -9,6 +10,7 @@ const SearchBar = () => {
   const handleBlur = () => {
     clickPoint.current.style.display = "block";
   };
+  
 
   return (
     <div className="items-center px-4 flex justify-center">

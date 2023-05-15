@@ -127,7 +127,7 @@ export default function LoginForm() {
                 Continue with Google
               </div>
               <div
-                onClick={login}
+                // onClick={login}
                 className="h-11 w-full border border-border-color cursor-pointer flex items-center text-border-color text-xs px-2 gap-2"
               >
                 <img

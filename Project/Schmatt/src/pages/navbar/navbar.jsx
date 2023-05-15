@@ -13,9 +13,9 @@ export default function Navbar() {
             </a>{" "}
           </div>
           <div className=" w-72"></div>
-          <a href="/chat" className="text-xl text-gray-50 group transition-all duration-300 ease-in-out"><span className="bg-left-bottom bg-gradient-to-r from-black to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">Chat</span></a>
+          <a href="/chat" className="text-xl text-gray-50 group transition-all duration-300 ease-in-out"><span className="bg-left-bottom bg-gradient-to-r from-black to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out cursor-pointer">Chat</span></a>
           <div className=" w-56"></div>
-          <a href="/forums" className="text-xl text-gray-50 group transition-all duration-300 ease-in-out"><span className="bg-left-bottom bg-gradient-to-r from-black to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out">Forums</span></a>
+          <a href="/forums" className="text-xl text-gray-50 group transition-all duration-300 ease-in-out"><span className="bg-left-bottom bg-gradient-to-r from-black to-white bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out cursor-pointer">Forums</span></a>
         </div>
         <div
           id="right"
