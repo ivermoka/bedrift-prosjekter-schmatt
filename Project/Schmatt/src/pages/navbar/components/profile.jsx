@@ -15,7 +15,7 @@ export default function profile() {
       <div className="flex flex-row  gap-3 items-center">
         <div className="w-14 h-10">
           <img
-            src={user.photoURL}
+            src={user.photoURL || "userIcon_placeholder.png"}
             alt="profile pic"
             className="w-full h-full rounded-full max-w-[40px]"
           />

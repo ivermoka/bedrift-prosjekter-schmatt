@@ -6,24 +6,31 @@ import { storage, auth, storageRef } from "./../../firebase-config";
 import getUser from "./../../user";
 import Navbar from "../navbar/navbar";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import ChangePassword from "./../../dialog/change-password-popup";
 
 export default function Profile() {
   const user = getUser();
   const [dropzoneState, setDropzoneState] = useState(false);
 
+  const [changePasswordPopup, setChangePasswordPopup] = useState(false);
+
   return (
     <>
       <Navbar />
       <div className="bg-rich-black h-screen">
+        <ChangePassword
+          changePasswordPopup={changePasswordPopup}
+          setChangePasswordPopup={setChangePasswordPopup}
+        />
         <div className="h-full w-2/4 ml-48 flex">
           <div
             className="w-96 h-full flex flex-col gap-6"
             id="profile-picture-container"
           >
-            <div className="bg-white w-96 h-96 mt-28">
+            <div className="bg-white w-96 h-96 mt-28 rounded-full">
               <img
                 className="h-full w-full rounded-full"
-                src={user.photoURL}
+                src={user.photoURL || "userIcon_placeholder.png"}
                 alt="profile-picture"
               />
             </div>
@@ -42,7 +49,12 @@ export default function Profile() {
               <span>Username: {user.displayName}</span>
               <span>Mail: {user.email}</span>
               <span>Password: {user.password}</span>
-              <button className="bg-white w-32 h-10 text-text-color font-light text-sm">
+              <button
+                onClick={() => {
+                  setChangePasswordPopup(true);
+                }}
+                className="bg-white w-32 h-10 text-text-color font-light text-sm"
+              >
                 Change password
               </button>
             </div>
@@ -62,7 +74,7 @@ function MyDropzone() {
     setUploading(true);
 
     // Upload file to Firebase Storage
-    const storageRef = ref(storage, "images/" + file.name);
+    const storageRef = ref(storage, "profile-pictures/" + file.name);
     await uploadBytes(storageRef, file);
 
     // Get download URL of uploaded file
@@ -78,6 +90,7 @@ function MyDropzone() {
 
     setUploading(false);
     setUploadComplete(true);
+    console.log(downloadURL);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -90,7 +103,7 @@ function MyDropzone() {
     <>
       <div
         {...getRootProps()}
-        className="bg-white/[0.7] opacity-90 w-42 h-20 border-2 border-black border-dashed flex items-center text-center px-8"
+        className="bg-white/[0.7] select-none cursor-pointer opacity-90 w-42 h-20 border-2 border-black border-dashed flex items-center justify-center text-center px-8"
       >
         <input {...getInputProps()} />
         {uploading ? (
@@ -98,7 +111,7 @@ function MyDropzone() {
         ) : isDragActive ? (
           <p>Drop the files here ...</p>
         ) : (
-          <p>Drag 'n' drop some files here, or click to select files</p>
+          <p>Drag and drop or click to select a file</p>
         )}
       </div>
       {uploadComplete && (
