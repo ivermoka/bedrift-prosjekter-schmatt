@@ -22,7 +22,7 @@ export default function AccountCreated({
 
   const user = getUser();
 
-  let errorMessage = "";
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [wrongOldPassword, setWrongOldPassword] = useState(true);
 
@@ -33,7 +33,7 @@ export default function AccountCreated({
         console.log("password updated");
       })
       .catch((error) => {
-        errorMessage = error;
+        setErrorMessage(error);
         console.log("not work");
       });
   };
