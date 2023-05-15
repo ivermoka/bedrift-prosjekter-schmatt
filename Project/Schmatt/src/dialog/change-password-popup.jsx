@@ -27,19 +27,15 @@ export default function AccountCreated({
   const [wrongOldPassword, setWrongOldPassword] = useState(true);
 
   const onSubmit = async (data) => {
-    if (data.oldPassword === "old") {
-      const newPassword = data.newPassword;
-      updatePassword(user, newPassword)
-        .then(() => {
-          console.log("password updated");
-        })
-        .catch((error) => {
-          errorMessage = error;
-          console.log("not work");
-        });
-    } else {
-      setWrongOldPassword("Old password not correct");
-    }
+    const newPassword = data.newPassword;
+    updatePassword(user, newPassword)
+      .then(() => {
+        console.log("password updated");
+      })
+      .catch((error) => {
+        errorMessage = error;
+        console.log("not work");
+      });
   };
 
   return (
@@ -68,14 +64,6 @@ export default function AccountCreated({
           >
             <input
               type="password"
-              {...register("oldPassword", {
-                required: "*Enter your old password",
-              })}
-              placeholder="Old Password"
-              className="h-8 border-2 border-border-color rounded-md"
-            />
-            <input
-              type="password"
               {...register("newPassword", {
                 required: "*Enter a new password",
                 minLength: {
@@ -97,7 +85,7 @@ export default function AccountCreated({
               <i className="m-0 p-0 text-sm text-red-700">
                 {errors.oldPassword?.message}
               </i>
-              <i className="m-0 p-0 text-sm text-red-700">
+              <i className="m-0 p-0 text-sm text-red-700 break-all">
                 {errors.newPassword?.message}
               </i>
               <i className="m-0 p-0 text-sm text-red-700">{errorMessage}</i>
