@@ -27,8 +27,8 @@ const UsernameList = () => {
     <div className="w-[16%] h-full flex flex-col overflow-y-scroll">
       {users.map((user) => (
         <User
-          photoURL={user.photoURL || ""}
-          displayName={user.displayName || ""}
+          photoURL={user.photoURL || "userIcon_placeholder.png"}
+          displayName={user.displayName}
         />
       ))}
     </div>
