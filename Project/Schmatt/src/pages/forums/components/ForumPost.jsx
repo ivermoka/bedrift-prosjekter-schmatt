@@ -74,7 +74,7 @@ const ForumPost = ({key, message, selectedForum, title, content}) => {
             <div className='flex flex-col items-center gap-10 px-24 pb-10'>
                 {/* <p >{message.name}</p> */}
                 <h1 className=' text-3xl'>{title}</h1>
-                
+                <img className=' max-w-[50%]' src={message.image}></img>
                 {/* <p>{message.text}</p> */}
                 <p>{content}</p>
                 {/* <p className={style.timestamp}>{formattedTime}</p> */}
