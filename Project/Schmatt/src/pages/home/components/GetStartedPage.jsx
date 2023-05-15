@@ -1,8 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from "framer-motion"
+import { useRef } from 'react'
 
 const GetStartedPage = () => {
+  
   return (
     <>
       <Box />
@@ -13,6 +15,9 @@ const GetStartedPage = () => {
   )
 }
 function Box() {
+  const myRef = useRef(null)
+
+  const executeScroll = () => myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })    
   return (
       <motion.div className='  backdrop-blur-sm w-screen h-screen items-center flex z-[8] ' initial={{opacity:0, translateY:10}} whileInView={{opacity:1, translateY:0}} transition={{duration:1}} >
         <div className=' pt-40 z-10 h-[110vh] w-screen  flex flex-col items-center text-text-color'>
@@ -25,8 +30,10 @@ function Box() {
           </Link>
           
           <img
-                className="animate-bounce mt-[20rem] h-auto w-[3rem] "
-                src={"down-arrow-svgrepo-com.svg"}
+                className=" scroll-smooth animate-bounce mt-[20rem] h-auto w-[3rem] "
+                src={"chevron-down-svgrepo-com.svg"}
+                onClick={executeScroll}
+                ref={myRef}
               />
         </div>
         
@@ -35,7 +42,7 @@ function Box() {
 }
 function Box2() {
   return (
-      <motion.div className='backdrop-blur-sm pt-10 z-10 h-[110vh] w-screen flex flex-col items-center text-text-color' initial={{opacity:0, translateY:10}} whileInView={{opacity:1, translateY:0}} transition={{duration:1}} >
+      <motion.div className='backdrop-blur-sm pt-10 z-10 h-[110vh] w-screen flex flex-col items-center text-text-color' initial={{opacity:0, translateY:10}} whileInView={{opacity:1, translateY:0}} transition={{duration:2}} >
         <div className='flex flex-row z-10 h-full w-full px-32 mb-20 flex-wrap '>
           <div className='basis-1/2 pr-5 flex justify-end'>Chat</div>
           <div className='basis-1/2 bg-slate-600'>(img)</div>

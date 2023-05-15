@@ -72,6 +72,9 @@ function MyDropzone() {
     updateProfile(auth.currentUser, {
       photoURL: downloadURL,
     });
+    await updateDoc(auth.currentUser, {
+      pfp: downloadURL,
+    })
 
     setUploading(false);
     setUploadComplete(true);
